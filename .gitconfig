@@ -1,0 +1,26 @@
+[user]
+	name = Tamás Demeter-Haludka
+	email = yorirou@gmail.com
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+  showbranch = auto
+[core]
+  pager = less -FRSX
+  symlinks = false
+[alias]
+  loggraph = log --graph --all --full-history --color --branches --decorate
+  l = log --oneline --decorate
+  d = diff --word-diff
+  s = status -sb
+  dc = diff --word-diff --cached
+  dl = diff
+  dlc = diff --cached
+  aa = add .
+  ps = push
+  pl = pull
+[push]
+	default = tracking
