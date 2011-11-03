@@ -1,0 +1,1 @@
+/Users/yorirou/.programs/go/misc/vim/syntax/go.vim
