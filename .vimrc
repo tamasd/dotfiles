@@ -1,6 +1,6 @@
 call pathogen#infect()
 if has("gui_running")
-	set guifont=Inconsolata\ 14
+	set guifont=Inconsolata:h14
 endif
 set shiftwidth=2
 set tabstop=2
