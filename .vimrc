@@ -28,6 +28,13 @@ au BufRead,BufNewFile *.install set syntax=php
 au BufRead,BufNewFile *.module set syntax=php
 au BufRead,BufNewFile *.test set syntax=php
 
+" Sets the indentation settings for go files.
+au FileType go set noexpandtab | set shiftwidth=4 | set tabstop=4 | set softtabstop=4
+" Sets gofmt as the tool for indenting with =.
+au FileType go setlocal equalprg=gofmt
+" Automatically indents the file before saving.
+au BufWritePre *.go exe ":silent 1,$!gofmt"
+
 syntax on
 
 " html5
