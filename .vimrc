@@ -1,6 +1,6 @@
 call pathogen#infect()
 if has("gui_running")
-	set guifont=Inconsolata:h14
+	set guifont=Menlo:h12
 endif
 set shiftwidth=2
 set tabstop=2
@@ -33,9 +33,15 @@ au FileType go set noexpandtab | set shiftwidth=4 | set tabstop=4 | set softtabs
 " Sets gofmt as the tool for indenting with =.
 au FileType go setlocal equalprg=gofmt
 " Automatically indents the file before saving.
-au BufWritePre *.go exe ":silent 1,$!gofmt"
+"au BufWritePre *.go exe \":silent 1,$!gofmt"
+
+au FileType json setlocal equalprg=python\ -m\ json.tool
+
+set completeopt=longest,menuone
 
 syntax on
+
+let g:erlangFold=0
 
 " html5
 " HTML 5 tags
