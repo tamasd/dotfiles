@@ -25,3 +25,5 @@ Thumbs.db
 *.zip
 .sass-cache
 *.beam
+node_modules
+bower_components
