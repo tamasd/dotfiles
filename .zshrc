@@ -1,3 +1,13 @@
+# DO NOT FORGET TO UPDATE /etc/launchd.conf !!!
+export GOROOT="$HOME/.programs/go"
+export GOBIN="$GOROOT/bin"
+export GOPATH="$HOME/.programs/go-contrib:$HOME/prog/go"
+export GOOS="darwin"
+export GOARCH="amd64"
+
+export DOCKER_HOST=tcp://127.0.0.1:4243
+
+export PATH="$HOME/bin:$GOBIN:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.gem/bin"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -48,21 +58,13 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(apache2-macports bower cabal colored-man drush git macports npm osx rebar golang web-search)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
 ## ENVIRONMENT VARIABLES ##
-
 export GEM_HOME="$HOME/.gem"
 
-# DO NOT FORGET TO UPDATE /etc/launchd.conf !!!
-export GOROOT="$HOME/.programs/go"
-export GOBIN="$GOROOT/bin"
-export GOPATH="$HOME/.programs/go-contrib:$HOME/prog/go"
-export GOOS="darwin"
-export GOARCH="amd64"
-
-export PATH="$HOME/bin:$GOBIN:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.gem/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export EDITOR='vim'
@@ -72,8 +74,6 @@ export EDITOR='vim'
 alias ll='ls -lhaeF'
 alias l='ls'
 alias ssh='ssh -C'
-alias mysql='mysql5 -u root'
-alias mysqldump='mysqldump5 -u root'
 alias z='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 alias webserv='python -m SimpleHTTPServer'
 alias gsci='git svn fetch && git svn rebase && git svn dcommit'
@@ -93,7 +93,6 @@ alias gpa='git push --all'
 alias gsync='git pull origin && git push origin'
 alias gsyncm='git pull origin master && git push origin master'
 alias gpp='git pull && git push'
-alias ack='ack-grep'
 alias up='sudo aptitude update && sudo aptitude full-upgrade'
 alias pdfmerge='gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output.pdf'
 alias drupal-user-reset='drush php-eval "user_save(user_load(1), array(\"pass\" => \"a\"));"'
@@ -106,11 +105,15 @@ alias gcas='git commit -a -m "Updates submodules."'
 alias startftp='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
 alias c='pbcopy'
 alias v='pbpaste'
-alias go='GOPATH="$GOPATH:`pwd`" go'
+#alias go='GOPATH="$GOPATH:`pwd`" go'
+alias go-fmt='for i in `find . -name \*.go`; do go fmt $i; done'
+alias gt='go test -v ./...'
+alias gocover='go test -coverprofile=c.out ./... && go tool cover -html=c.out && rm c.out'
 alias closure="java -jar /Users/yorirou/.programs/closure-compiler.jar"
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias pw='pwgen $((RANDOM%32+6)) 1'
 alias composer='php55 ~/prog/php/composer/composer.phar'
+alias ack='ack-5.12'
 
 alias -s jar='java -jar'
 
