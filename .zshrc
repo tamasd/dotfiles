@@ -7,7 +7,7 @@ export GOARCH="amd64"
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
 
-export PATH="$HOME/bin:$GOBIN:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.gem/bin"
+export PATH="$HOME/bin:$GOBIN:$HOME/.programs/dart-sdk/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql93/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -59,6 +59,12 @@ plugins=(apache2-macports bower cabal colored-man drush git macports npm osx reb
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zaw/zaw.zsh
+
+bindkey '^R' zaw-history
+bindkey '^B' zaw-git-branches
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search]]']]'
 
 # User configuration
 
@@ -112,12 +118,15 @@ alias gocover='go test -coverprofile=c.out ./... && go tool cover -html=c.out &&
 alias closure="java -jar /Users/yorirou/.programs/closure-compiler.jar"
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias pw='pwgen $((RANDOM%32+6)) 1'
-alias composer='php55 ~/prog/php/composer/composer.phar'
+alias composer='php56 ~/prog/php/composer/composer.phar'
 alias ack='ack-5.12'
 
 alias -s jar='java -jar'
 
-unalias sl
+alias dir='ls'
+alias cd..='cd ..'
+
+#unalias sl
 
 ## COLOR SCHEME ##
 
