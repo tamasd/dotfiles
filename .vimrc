@@ -24,6 +24,9 @@ Plugin 'spf13/PIV'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
+Plugin 'tpope/vim-haml' " SASS support
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 if has("gui_running")
@@ -58,8 +61,17 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:go_snippet_engine = "neosnippet"
 let g:session_autosave = 0
+let g:vim_markdown_folding_disabled=1
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap <Leader>r <Plug>(go-rename)
+au WinEnter * set nofen
+au WinLeave * set nofen
+au FileType * set nofen
+
+au FileType ijm set syn=javascript " ImageJ Macro
+
+let g:go_fmt_command = "goimports"
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "let g:nerdtree_tabs_open_on_console_startup = 1
@@ -71,3 +83,4 @@ nmap <F8> :TagbarToggle<CR>
 set mouse=a
 
 syntax on
+set nofoldenable
