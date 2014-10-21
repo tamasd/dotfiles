@@ -4,14 +4,20 @@
 *.log
 *.sql
 *.sqlite
+
+# Mac OS X
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 Icon?
+
+# Windows
 ehthumbs.db
 Thumbs.db
+
+# Compiled / dependency / compressed
 *.class
 *.o
 *.so
@@ -27,3 +33,25 @@ Thumbs.db
 *.beam
 node_modules
 bower_components
+vendor
+
+# VIM
+*.swp
+.vimrc
+
+# Xcode
+*.lock
+*~.nib
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+*.moved-aside
+*.xccheckout
