@@ -50,3 +50,8 @@
 [github]
 	user = Yorirou
   password = !security find-internet-password -a Yorirou -s github.com -w | tr -d '\n'
+[commit]
+	gpgsign = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
