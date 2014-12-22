@@ -27,6 +27,7 @@ Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'tpope/vim-haml' " SASS support
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'tpope/vim-fugitive'
+Plugin 'wting/rust.vim'
 call vundle#end()
 
 if has("gui_running")
