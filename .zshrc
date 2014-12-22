@@ -1,4 +1,4 @@
-export GOROOT="/opt/local/go"
+export GOROOT="$HOME/.programs/go"
 export GOPATH="$HOME/prog/go"
 export GOBIN="$HOME/prog/go/bin"
 export GOOS="darwin"
@@ -6,9 +6,11 @@ export GOARCH="amd64"
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
 
-export PATH="$HOME/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql93/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush"
+export PATH="$HOME/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql94/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush"
 
 export DRUSH_PHP="/opt/local/bin/php"
+
+export LC_ALL="en_US.UTF-8"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -121,6 +123,7 @@ alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 alias pw='pwgen $((RANDOM%32+6)) 1'
 alias composer='php55 ~/prog/php/composer/composer.phar'
 alias ack='ack-5.12'
+alias tmux='tmux -u'
 
 alias -s jar='java -jar'
 
@@ -141,3 +144,5 @@ RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+
+ulimit -S -n 4096
