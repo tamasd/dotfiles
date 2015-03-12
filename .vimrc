@@ -28,6 +28,12 @@ Plugin 'tpope/vim-haml' " SASS support
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'wting/rust.vim'
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-tags'
+Plugin 'jsx/jsx.vim'
+Bundle 'justinmk/vim-sneak'
 call vundle#end()
 
 if has("gui_running")
@@ -85,3 +91,7 @@ set mouse=a
 
 syntax on
 set nofoldenable
+
+if &term =~ '256color'
+	set t_ut=
+endif
