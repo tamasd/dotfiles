@@ -167,8 +167,5 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 export TERM=xterm-256color
-if [ -n "$TMUX" ]; then
-	export TERM="screen-256color"
-fi
 
 ulimit -S -n 4096
