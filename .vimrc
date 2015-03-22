@@ -36,6 +36,8 @@ Plugin 'jsx/jsx.vim'
 Bundle 'justinmk/vim-sneak'
 call vundle#end()
 
+let mapleader=" "
+
 if has("gui_running")
 	set guifont=Menlo:h12
 endif
