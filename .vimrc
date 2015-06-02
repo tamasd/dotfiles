@@ -33,7 +33,9 @@ Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'jsx/jsx.vim'
-Bundle 'justinmk/vim-sneak'
+Plugin 'justinmk/vim-sneak'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'terryma/vim-expand-region'
 call vundle#end()
 
 let mapleader=" "
