@@ -37,6 +37,8 @@ vendor
 
 # VIM
 *.swp
+*.swo
+*.swn
 .vimrc
 
 # Xcode
