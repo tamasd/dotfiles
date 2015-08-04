@@ -6,7 +6,7 @@ export GOARCH="amd64"
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
 
-export PATH="$HOME/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql94/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush"
+export PATH="$HOME/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql94/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.programs/etcd"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib"
 
@@ -130,6 +130,7 @@ alias p='sudo port'
 alias ps='port search'
 alias pi='sudo port install'
 alias pup='sudo port selfupdate && sudo port upgrade outdated'
+alias pupi='sudo port selfupdate && sudo port list outdated && read && sudo port upgrade outdated'
 alias g='git'
 alias gcas='git commit -a -m "Updates submodules."'
 alias startftp='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
