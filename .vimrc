@@ -36,9 +36,22 @@ Plugin 'jsx/jsx.vim'
 Plugin 'justinmk/vim-sneak'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-expand-region'
+Plugin 'cespare/vim-toml'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'skammer/vim-css-color'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'groenewege/vim-less'
 call vundle#end()
 
+augroup VimCSS3Syntax
+	autocmd!
+
+	autocmd FileType css setlocal iskeyword+=-
+augroup END
+
 let mapleader=" "
+
+set history=1024
 
 if has("gui_running")
 	set guifont=Menlo:h12
@@ -80,6 +93,19 @@ au WinEnter * set nofen
 au WinLeave * set nofen
 au FileType * set nofen
 
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
 au FileType ijm set syn=javascript " ImageJ Macro
 
 let g:go_fmt_command = "goimports"
@@ -87,14 +113,17 @@ let g:go_fmt_command = "goimports"
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "let g:nerdtree_tabs_open_on_console_startup = 1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
-"let g:airline_theme='solarized'
-"let g:airline_solarized_bg='dark'
-let g:airline_theme='dark'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 nmap <F8> :TagbarToggle<CR>
 set mouse=a
 
 syntax on
 set nofoldenable
+
+set autoread
+
+let g:airline_powerline_fonts = 1
 
 if &term =~ '256color'
 	set t_ut=
