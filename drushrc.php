@@ -1,5 +1,7 @@
 <?php
 
+$command_specific['up']['no-backup'] = TRUE;
+
 function determineDomain() {
   static $SITES_DIR = '/Users/yorirou/Sites/';
   $cwd = getcwd();

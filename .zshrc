@@ -146,6 +146,7 @@ alias composer='php56 ~/prog/php/composer/composer.phar'
 alias ack='ack-5.12'
 alias tmux='tmux -u'
 alias rustup='curl -s https://static.rust-lang.org/rustup.sh | sudo sh'
+alias docker-start='/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh'
 
 alias -s jar='java -jar'
 
