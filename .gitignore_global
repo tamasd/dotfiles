@@ -57,3 +57,6 @@ build/
 xcuserdata
 *.moved-aside
 *.xccheckout
+deploy.sh
+*.crt
+*.key
