@@ -13,17 +13,19 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'vim-scripts/JavaScript-Indent'
+Plugin 'nemtsov/JavaScript-Indent'
 Plugin 'marijnh/tern_for_vim' " JavaScript autocomplete
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'walm/jshint.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mattn/webapi-vim'
+"Plugin 'Wildog/airline-weather.vim'
 Plugin 'spf13/vim-autoclose'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'spf13/PIV'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
-Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'tpope/vim-haml' " SASS support
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'tpope/vim-fugitive'
@@ -38,9 +40,13 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-expand-region'
 Plugin 'cespare/vim-toml'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'skammer/vim-css-color'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-git'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Widdershin/sonic-pi-cli'
 call vundle#end()
 
 augroup VimCSS3Syntax
@@ -64,6 +70,14 @@ filetype plugin indent on
 
 set background=dark
 colorscheme solarized
+
+let g:weather#area = 'szeged,hu'
+let g:weather#unit = 'metric'
+let g:weather#appid = 'c825dd4c4ab277a8813fa72ce85d0654'
+
+let g:ctrlp_custom_ignore = {
+			\	'dir': '\.git$\|node_modules\|assets'
+			\ }
 
 set list
 exe "set listchars=tab:>-,trail:\xb7,eol:$,nbsp:\xb7" 
