@@ -47,6 +47,8 @@ Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Widdershin/sonic-pi-cli'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 
 augroup VimCSS3Syntax
@@ -86,6 +88,8 @@ map <C-TAB> :set invlist<CR>
 set invlist
 
 au BufRead,BufNewFile *.go set syntax=go
+au BufRead,BufNewFile *.es6 set filetype=javascript
+au BufRead,BufNewFile *.es set filetype=javascript
 au FileType json setlocal equalprg=python\ -m\ json.tool
 
 set completeopt=longest,menuone
