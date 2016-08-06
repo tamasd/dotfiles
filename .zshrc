@@ -3,10 +3,11 @@ export GOPATH="$HOME/prog/go"
 export GOBIN="$HOME/prog/go/bin"
 export GOOS="darwin"
 export GOARCH="amd64"
+export RUST_SRC_PATH="$HOME/prog/rust/rustc-1.9.0/src"
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
 
-export PATH="$HOME/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql95/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.programs/etcd"
+export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql95/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.cargo/bin:$HOME/.programs/depot_tools"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib"
 

@@ -29,7 +29,6 @@ Plugin 'xolox/vim-session'
 Plugin 'tpope/vim-haml' " SASS support
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'tpope/vim-fugitive'
-Plugin 'wting/rust.vim'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
@@ -49,6 +48,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Widdershin/sonic-pi-cli'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Shougo/echodoc.vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 call vundle#end()
 
 augroup VimCSS3Syntax
@@ -100,6 +102,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd filetype crontab setlocal nobackup nowritebackup
+let g:racer_experimental_completer = 1
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:go_snippet_engine = "neosnippet"

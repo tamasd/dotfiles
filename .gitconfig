@@ -3,37 +3,37 @@
 	email = yorirou@gmail.com
 	signingkey = 1528793A
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = auto
-  showbranch = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+	showbranch = auto
 [core]
-  pager = less -FRSX
-  symlinks = false
+	pager = less -FRSX
+	symlinks = false
 	excludesfile = /Users/yorirou/.gitignore_global
 [alias]
-  loggraph = log --graph --all --full-history --color --branches --decorate
-  l = log --oneline --decorate
-  d = diff --word-diff
-  s = status -sb
-  dc = diff --word-diff --cached
-  dl = diff
-  dlc = diff --cached
-  aa = add .
-  ps = push
-  pl = pull
-  todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+	loggraph = log --graph --all --full-history --color --branches --decorate
+	l = log --oneline --decorate
+	d = diff --word-diff
+	s = status -sb
+	dc = diff --word-diff --cached
+	dl = diff
+	dlc = diff --cached
+	aa = add .
+	ps = push
+	pl = pull
+	todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
 	newqa = !ruby $HOME/Sites/gittools/tools/gitflow_commands.rb newqa
 	cleanup = !ruby $HOME/Sites/gittools/tools/gitflow_commands.rb cleanup
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  assume   = update-index --assume-unchanged
-  unassume = update-index --no-assume-unchanged
-  assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
-  snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-  ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
-  theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+	assume	 = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	assumed	= "!git ls-files -v | grep ^h | cut -c 3-"
+	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	ours	 = "!f() { git checkout --ours $@ && git add $@; }; f"
+	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [push]
 	default = tracking
@@ -42,14 +42,12 @@
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [diff]
 	algorithm = patience
+	compactionHeuristic = true
 [github]
-	user = Yorirou
-  password = !security find-internet-password -a Yorirou -s github.com -w | tr -d '\n'
+	user = tamasd
+	password = !security find-internet-password -a tamasd -s github.com -w | tr -d '\n'
 [commit]
 	gpgsign = true
 [filter "media"]
