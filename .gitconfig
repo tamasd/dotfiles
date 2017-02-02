@@ -45,6 +45,7 @@
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
+	renameLimit = 1024
 [github]
 	user = tamasd
 	password = !security find-internet-password -a tamasd -s github.com -w | tr -d '\n'

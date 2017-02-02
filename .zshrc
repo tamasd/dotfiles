@@ -5,8 +5,6 @@ export GOOS="darwin"
 export GOARCH="amd64"
 export RUST_SRC_PATH="$HOME/prog/rust/rustc-1.9.0/src"
 
-export DOCKER_HOST=tcp://127.0.0.1:4243
-
 export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql95/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.cargo/bin:$HOME/.programs/depot_tools"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib"
@@ -147,10 +145,12 @@ alias composer='php56 ~/prog/php/composer/composer.phar'
 alias ack='ack-5.12'
 alias tmux='tmux -u'
 alias rustup='curl -s https://static.rust-lang.org/rustup.sh | sudo sh'
-alias docker-start='/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh'
 alias kubectl='/Users/yorirou/.programs/kubernetes/platforms/darwin/amd64/kubectl'
+alias fuck='sudo !!'
+alias vimup='vim +PluginUpdate +qall && vim +GoUpdateBinaries +qall'
 
 alias -s jar='java -jar'
+alias -s coverprofile='go tool cover -html'
 
 alias dir='ls'
 alias cd..='cd ..'

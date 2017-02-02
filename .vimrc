@@ -7,7 +7,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'majutsushi/tagbar'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/neocomplete.vim'
+Plugin 'roxma/SimpleAutoComplPop'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -19,8 +20,6 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'walm/jshint.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'mattn/webapi-vim'
-"Plugin 'Wildog/airline-weather.vim'
 Plugin 'spf13/vim-autoclose'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'spf13/PIV'
@@ -49,9 +48,16 @@ Plugin 'Widdershin/sonic-pi-cli'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Shougo/echodoc.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
+"Plugin 'rust-lang/rust.vim'
+"Plugin 'racer-rust/vim-racer'
+Plugin 'posva/vim-vue'
 call vundle#end()
+
+autocmd VimResized * wincmd =
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 augroup VimCSS3Syntax
 	autocmd!
@@ -63,9 +69,6 @@ let mapleader=" "
 
 set history=1024
 
-if has("gui_running")
-	set guifont=Menlo:h12
-endif
 set number
 set ignorecase
 set tabstop=4
@@ -74,10 +77,6 @@ filetype plugin indent on
 
 set background=dark
 colorscheme solarized
-
-let g:weather#area = 'szeged,hu'
-let g:weather#unit = 'metric'
-let g:weather#appid = 'c825dd4c4ab277a8813fa72ce85d0654'
 
 let g:ctrlp_custom_ignore = {
 			\	'dir': '\.git$\|node_modules\|assets'
@@ -102,10 +101,11 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd filetype crontab setlocal nobackup nowritebackup
-let g:racer_experimental_completer = 1
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:go_snippet_engine = "neosnippet"
+autocmd FileType go call sacp#enableForThisBuffer({ "matches": [
+			\ { '=~': '\v[a-zA-Z]{4}$' , 'feedkeys': "\<C-x>\<C-n>"} ,
+			\ { '=~': '\.$'            , 'feedkeys': "\<Plug>(sacp_cache_fuzzy_omnicomplete)", "ignoreCompletionMode":1} ,
+			\ ]
+			\ })
 let g:session_autosave = 0
 let g:vim_markdown_folding_disabled=1
 au FileType go nmap <Leader>i <Plug>(go-info)
