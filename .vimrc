@@ -48,9 +48,13 @@ Plugin 'Widdershin/sonic-pi-cli'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Shougo/echodoc.vim'
-"Plugin 'rust-lang/rust.vim'
-"Plugin 'racer-rust/vim-racer'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 Plugin 'posva/vim-vue'
+Plugin 'raphael/vim-present-simple'
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-syncopate'
+Plugin 'google/vim-searchindex'
 call vundle#end()
 
 autocmd VimResized * wincmd =
@@ -73,6 +77,7 @@ set number
 set ignorecase
 set tabstop=4
 set shiftwidth=4
+set showcmd
 filetype plugin indent on
 
 set background=dark
@@ -108,6 +113,7 @@ autocmd FileType go call sacp#enableForThisBuffer({ "matches": [
 			\ })
 let g:session_autosave = 0
 let g:vim_markdown_folding_disabled=1
+let g:go_auto_sameids=1
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap <Leader>r <Plug>(go-rename)
@@ -150,6 +156,12 @@ let g:airline_powerline_fonts = 1
 if &term =~ '256color'
 	set t_ut=
 endif
+
+if has("mouse_sgr")
+	set ttymouse=sgr
+else
+	set ttymouse=xterm2
+end
 
 map <Esc>Oq 1
 map <Esc>Or 2

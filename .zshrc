@@ -5,7 +5,7 @@ export GOOS="darwin"
 export GOARCH="amd64"
 export RUST_SRC_PATH="$HOME/prog/rust/rustc-1.9.0/src"
 
-export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql95/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.cargo/bin:$HOME/.programs/depot_tools"
+export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql96/bin/:/opt/local/lib/mysql57/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.cargo/bin"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib"
 
@@ -141,13 +141,13 @@ alias gocover='go test -coverprofile=c.out ./... && go tool cover -html=c.out &&
 alias closure="java -jar /Users/yorirou/.programs/closure-compiler.jar"
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias pw='pwgen $((RANDOM%32+6)) 1'
-alias composer='php56 ~/prog/php/composer/composer.phar'
 alias ack='ack-5.12'
 alias tmux='tmux -u'
 alias rustup='curl -s https://static.rust-lang.org/rustup.sh | sudo sh'
 alias kubectl='/Users/yorirou/.programs/kubernetes/platforms/darwin/amd64/kubectl'
-alias fuck='sudo !!'
+alias fuck='sudo $(fc -ln -1)'
 alias vimup='vim +PluginUpdate +qall && vim +GoUpdateBinaries +qall'
+alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'

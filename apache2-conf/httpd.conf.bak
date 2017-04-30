@@ -37,7 +37,7 @@ ServerRoot "/opt/local/apache2"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-Listen 80
+Listen 127.0.0.1:80
 
 #
 # Dynamic Shared Object (DSO) Support
@@ -114,6 +114,8 @@ LoadModule speling_module modules/mod_speling.so
 LoadModule userdir_module modules/mod_userdir.so
 LoadModule alias_module modules/mod_alias.so
 LoadModule rewrite_module modules/mod_rewrite.so
+#LoadModule php5_module        modules/libphp5.so
+LoadModule php5_module       modules/mod_php56.so
 
 <IfModule !mpm_netware_module>
 <IfModule !mpm_winnt_module>
@@ -148,7 +150,7 @@ Group www
 # e-mailed.  This address appears on some server-generated pages, such
 # as error documents.  e.g. admin@your-domain.com
 #
-ServerAdmin you@example.com
+ServerAdmin yorirou@gmail.com
 
 #
 # ServerName gives the name and port that the server uses to identify itself.
@@ -158,6 +160,7 @@ ServerAdmin you@example.com
 # If your host doesn't have a registered DNS name, enter its IP address here.
 #
 #ServerName www.example.com:80
+ServerName localhost:80
 
 #
 # DocumentRoot: The directory out of which you will serve your
@@ -226,7 +229,7 @@ DocumentRoot "/opt/local/apache2/htdocs"
 # is requested.
 #
 <IfModule dir_module>
-    DirectoryIndex index.html
+    DirectoryIndex index.php index.html
 </IfModule>
 
 #
@@ -401,6 +404,9 @@ DefaultType text/plain
     #
     #AddType text/html .shtml
     #AddOutputFilter INCLUDES .shtml
+    
+    AddType application/x-httpd-php .php
+    AddType application/x-httpd-php-source .phps
 </IfModule>
 
 #
@@ -440,7 +446,7 @@ DefaultType text/plain
 # necessary.
 
 # Server-pool management (MPM specific)
-#Include conf/extra/httpd-mpm.conf
+Include conf/extra/httpd-mpm.conf
 
 # Multi-language error messages
 #Include conf/extra/httpd-multilang-errordoc.conf
@@ -452,13 +458,13 @@ DefaultType text/plain
 #Include conf/extra/httpd-languages.conf
 
 # User home directories
-#Include conf/extra/httpd-userdir.conf
+Include conf/extra/httpd-userdir.conf
 
 # Real-time info on requests and configuration
 #Include conf/extra/httpd-info.conf
 
 # Virtual hosts
-#Include conf/extra/httpd-vhosts.conf
+Include conf/extra/httpd-vhosts.conf
 
 # Local access to the Apache HTTP Server Manual
 #Include conf/extra/httpd-manual.conf
