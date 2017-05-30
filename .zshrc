@@ -5,13 +5,7 @@ export GOOS="linux"
 export GOARCH="amd64"
 export RUST_SRC_PATH="$HOME/prog/rust/rustc-1.9.0/src"
 
-export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:/opt/local/bin:/opt/local/sbin:/opt/local/apache2/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$HOME/.gem/bin:/opt/local/lib/postgresql96/bin/:/opt/local/lib/mysql57/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin:/sbin:/usr/sbin:$HOME/Library/Haskell/bin:$HOME/pxbin:$HOME/prog/php/drush:$HOME/.cargo/bin"
-
-export DYLD_LIBRARY_PATH="/usr/local/lib"
-
-export DRUSH_PHP="/opt/local/bin/php"
-
-export LC_ALL="en_US.UTF-8"
+export PATH="$HOME/bin:$HOME/prog/go/bin:$PATH"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -100,7 +94,7 @@ export EDITOR='vim'
 
 ## ALIASES ##
 
-alias ll='ls -lhaeF'
+alias ll='ls -lhaX'
 alias l='ls'
 alias ssh='ssh -C'
 alias z='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
@@ -125,26 +119,18 @@ alias gpp='git pull && git push'
 alias up='sudo aptitude update && sudo aptitude full-upgrade'
 alias pdfmerge='gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output.pdf'
 alias drupal-user-reset='drush php-eval "user_save(user_load(1), array(\"pass\" => \"a\"));"'
-alias p='sudo port'
-alias ps='port search'
-alias pi='sudo port install'
-alias pup='sudo port selfupdate && sudo port upgrade outdated'
-alias pupi='sudo port selfupdate && sudo port list outdated && read && sudo port upgrade outdated'
 alias g='git'
 alias gcas='git commit -a -m "Updates submodules."'
 alias startftp='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
-alias c='pbcopy'
-alias v='pbpaste'
+alias c='xclip -selection c'
+alias v='xclip -selection clipboard -o'
 alias go-fmt='for i in `find . -name \*.go`; do go fmt $i; done'
 alias gt='go test -v ./...'
 alias gocover='go test -coverprofile=c.out ./... && go tool cover -html=c.out && rm c.out'
 alias closure="java -jar /Users/yorirou/.programs/closure-compiler.jar"
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias pw='pwgen $((RANDOM%32+6)) 1'
 alias ack='ack-5.12'
 alias tmux='tmux -u'
-alias rustup='curl -s https://static.rust-lang.org/rustup.sh | sudo sh'
-alias kubectl='/Users/yorirou/.programs/kubernetes/platforms/darwin/amd64/kubectl'
 alias fuck='sudo $(fc -ln -1)'
 alias vimup='vim +PluginUpdate +qall && vim +GoUpdateBinaries +qall'
 alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
@@ -155,15 +141,13 @@ alias -s coverprofile='go tool cover -html'
 alias dir='ls'
 alias cd..='cd ..'
 
-#unalias sl
-
 ## COLOR SCHEME ##
 
 if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='%{${fg_bold[green]}%}:: %{$reset_color%}%{${fg[blue]}%}%3~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+PROMPT='%F{61}%n%{$reset_color%}@%{${fg[yellow]}%}%m %{${fg_bold[green]}%}:: %{$reset_color%}%{${fg[blue]}%}%3~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 
 RPS1="${return_code}"
 
@@ -176,3 +160,6 @@ ulimit -S -n 4096
 
 export KUBERNETES_PROVIDER=vagrant
 export NUM_MINIONS=4
+
+# start tmux
+tmux has &>/dev/null || tmux start \; new-session -d 'sleep 5'
