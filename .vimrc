@@ -55,6 +55,7 @@ Plugin 'raphael/vim-present-simple'
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-syncopate'
 Plugin 'google/vim-searchindex'
+Plugin 'MarcWeber/vim-addon-local-vimrc'
 call vundle#end()
 
 autocmd VimResized * wincmd =

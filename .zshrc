@@ -162,4 +162,4 @@ export KUBERNETES_PROVIDER=vagrant
 export NUM_MINIONS=4
 
 # start tmux
-tmux has &>/dev/null || tmux start \; new-session -d 'sleep 5'
+tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'

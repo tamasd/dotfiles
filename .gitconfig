@@ -12,7 +12,7 @@
 [core]
 	pager = less -FRSX
 	symlinks = false
-	excludesfile = /Users/yorirou/.gitignore_global
+	excludesfile = /home/tamas/.gitignore_global
 [alias]
 	loggraph = log --graph --all --full-history --color --branches --decorate
 	l = log --oneline --decorate
