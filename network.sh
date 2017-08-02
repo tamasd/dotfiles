@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for i in `ifconfig | grep -E '^\S' | cut -d':' -f1 | grep -v lo`; do
-	ifconfig $i | grep 'inet ' | awk "{printf \"$i %s \", \$2}"
+for i in `ifconfig | grep -E '^\S' | awk -F '[: ]' '{print $1}' | grep -vE '(lo|docker|vboxnet)'`; do
+	ifconfig $i | grep 'inet ' | sed -e 's/inet addr:/inet /' | awk "{printf \"$i %s \", \$2}"
 done
