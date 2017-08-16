@@ -1,0 +1,26 @@
+[cargo-new]
+name = 'Tamas Demeter-Haludka'
+email = ''
+vcs = 'git'
+
+[build]
+jobs = 12
+rustflags = [
+	"-Ctarget-cpu=znver1",
+	"-Copt-level=2",
+	"-Ccodegen-units=12"
+]
+
+[profile.dev]
+debuginfo = 2
+debug-assertions = true
+debug = true
+
+[term]
+verbose = true
+
+[alias]
+b = "build"
+t = "test"
+r = "run"
+rr = "run --release"

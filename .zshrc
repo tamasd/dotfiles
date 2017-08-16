@@ -1,11 +1,10 @@
-export GOROOT="/usr/lib/go"
+export GOROOT=`ls -d /usr/lib*/go/*`
 export GOPATH="$HOME/prog/go"
 export GOBIN="$HOME/prog/go/bin"
 export GOOS="linux"
 export GOARCH="amd64"
-export RUST_SRC_PATH="$HOME/prog/rust/rustc-1.9.0/src"
-
-export PATH="$HOME/bin:$HOME/prog/go/bin:$PATH"
+export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$PATH"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -90,7 +89,7 @@ export GEM_HOME="$HOME/.gem"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 ## ALIASES ##
 
@@ -132,7 +131,8 @@ alias pw='pwgen $((RANDOM%32+6)) 1'
 alias ack='ack-5.12'
 alias tmux='tmux -u'
 alias fuck='sudo $(fc -ln -1)'
-alias vimup='vim +PluginUpdate +qall && vim +GoUpdateBinaries +qall'
+alias e=$EDITOR
+alias cg='cargo'
 alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
 
 alias -s jar='java -jar'

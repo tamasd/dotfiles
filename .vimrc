@@ -7,7 +7,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'majutsushi/tagbar'
-"Plugin 'Shougo/neocomplete.vim'
 Plugin 'roxma/SimpleAutoComplPop'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
@@ -20,7 +19,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'walm/jshint.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'spf13/vim-autoclose'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'spf13/PIV'
 Plugin 'xolox/vim-misc'
@@ -49,13 +48,13 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Shougo/echodoc.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
 Plugin 'posva/vim-vue'
 Plugin 'raphael/vim-present-simple'
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-syncopate'
 Plugin 'google/vim-searchindex'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
+Plugin 'vim-syntastic/syntastic'
 call vundle#end()
 
 autocmd VimResized * wincmd =
@@ -89,7 +88,7 @@ let g:ctrlp_custom_ignore = {
 			\ }
 
 set list
-exe "set listchars=tab:>-,trail:\xb7,eol:$,nbsp:\xb7" 
+exe "set listchars=tab:>-,trail:\xb7,eol:$,nbsp:\xb7"
 set backspace=indent,eol,start
 map <C-TAB> :set invlist<CR>
 set invlist
@@ -114,7 +113,7 @@ autocmd FileType go call sacp#enableForThisBuffer({ "matches": [
 			\ })
 let g:session_autosave = 0
 let g:vim_markdown_folding_disabled=1
-let g:go_auto_sameids=1
+let g:go_auto_sameids=0
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap <Leader>r <Plug>(go-rename)
@@ -135,6 +134,8 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 
+au FileType rust set b:AutoPairs = {'(':')', '[':']', '{':'}',"<":">",'"':'"', '`':'`'}
+
 au FileType ijm set syn=javascript " ImageJ Macro
 
 let g:go_fmt_command = "goimports"
@@ -154,14 +155,25 @@ set autoread
 
 let g:airline_powerline_fonts = 1
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 if &term =~ '256color'
 	set t_ut=
 endif
 
-if has("mouse_sgr")
-	set ttymouse=sgr
-else
-	set ttymouse=xterm2
+if !has("nvim")
+	if has("mouse_sgr")
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	end
 end
 
 map <Esc>Oq 1
