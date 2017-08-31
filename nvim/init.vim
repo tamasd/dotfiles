@@ -80,15 +80,21 @@ exe "set listchars=tab:>-,trail:\xb7,eol:$,nbsp:\xb7"
 set backspace=indent,eol,start
 map <C-TAB> :set invlist<CR>
 set invlist
+set nohls
 au BufRead,BufNewFile *.es6 set filetype=javascript
 au BufRead,BufNewFile *.es set filetype=javascript
 au FileType json setlocal equalprg=python\ -m\ json.tool
 autocmd BufReadPost *.rs setlocal filetype=rust
 let g:session_autosave = 0
+let g:session_autoload = 'no'
 let g:vim_markdown_folding_disabled=1
 let g:go_auto_sameids=0
 let g:rustfmt_autosave=1
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#max_abbr_width = 0
+let g:deoplete#max_menu_width = 0
 set hidden
 
 let g:LanguageClient_serverCommands = {
@@ -120,6 +126,8 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 let g:go_fmt_command = "goimports"
 
 au FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}',"<":">",'"':'"', '`':'`'}
+au FileType rust set omnifunc=LanguageClient#complete
+au FileType rust set completefunc=LanguageClient#complete
 
 au FileType ijm set syn=javascript " ImageJ Macro
 
