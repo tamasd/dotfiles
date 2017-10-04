@@ -1,10 +1,11 @@
-export GOROOT=`ls -d /usr/lib*/go/*`
+export GOROOT="$HOME/.programs/go"
+export GOROOT_BOOTSTRAP="$HOME/.programs/go14"
 export GOPATH="$HOME/prog/go"
 export GOBIN="$HOME/prog/go/bin"
 export GOOS="linux"
 export GOARCH="amd64"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$PATH"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
