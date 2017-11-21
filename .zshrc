@@ -164,3 +164,5 @@ export NUM_MINIONS=4
 
 # start tmux
 tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'
+
+eval `dircolors /home/tamas/.dir_colors/dircolors`

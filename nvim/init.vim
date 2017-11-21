@@ -1,4 +1,4 @@
-set guicursor=a:block-blinkon1
+set guicursor=a:block-blinkon0
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
