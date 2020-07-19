@@ -27,6 +27,7 @@
 #define SC_UNSPLIT                LALT(KC_D)
 #define SC_UNSPLIT_ALL            LALT(S(KC_D))
 #define SC_NEXT_SPLITTER          LALT(KC_T)
+#define SC_DEBUG                  S(KC_F9)
 #define SC_RUN                    S(KC_F10)
 #define SC_SHOW_ANCESTRY          LCTL(KC_F12)
 #define SC_RESUME_PROGRAM         KC_F9
@@ -34,6 +35,7 @@
 #define SC_STEP_INTO              KC_F7
 #define SC_FORCE_STEP_INTO        LALT(S(KC_F7))
 #define SC_STEP_OUT               S(KC_F8)
+#define SC_GENERATE               LALT(KC_INSERT)
 
 // Lighting config
 #define LIGHT_REACTIVE_ATTN       125
@@ -96,9 +98,6 @@ enum planck_keycodes {
   SKC_ASSIGN,
   SKC_ERRNE,
   SKC_IFE,
-
-  // Python stuff
-  SKC_PRINT,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -178,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Directional navigation (NAV) layer
    *
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │     │ DL  │ DR  │     │     │     │     │     │     │     │     │     │
+   *                │     │ DL  │ DR  │     │ F4  │  +  │  -  │     │     │     │     │  *  │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ ESC │     │Home │PgUp │PgDn │ End │  ←  │  ↓  │  ↑  │  →  │     │ RET │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -188,10 +187,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [NAV_LAYER] = {
-    {___x___, RGUI(RCTL(KC_LEFT)), RGUI(RCTL(KC_RIGHT)), ___x___, ___x___, ___x___,  ___x___,  ___x___, ___x___, ___x___, ___x___, ___x___},
-    {KC_ESC,  ___x___,             KC_HOME,              KC_PGUP, KC_PGDN, KC_END,   KC_LEFT,  KC_DOWN, KC_UP,   KC_RGHT, GOBACK_, ___x___},
-    {___x___, ___x___,             ___x___,              ___x___, ___x___, ___x___,  ___x___,  ___x___, ___x___, ___x___, ___x___, ___x___},
-    {___x___, _______,             _______,              _______, ___x___, KC_SPACE, KC_SPACE, ___x___, _______, _______, _______, _______}
+    {___x___, RGUI(RCTL(KC_LEFT)), RGUI(RCTL(KC_RIGHT)), ___x___, KC_F4,   KC_PLUS,  KC_MINUS,  ___x___, ___x___, ___x___, ___x___, KC_ASTERISK},
+    {KC_ESC,  ___x___,             KC_HOME,              KC_PGUP, KC_PGDN, KC_END,   KC_LEFT,   KC_DOWN, KC_UP,   KC_RGHT, GOBACK_, ___x___    },
+    {___x___, ___x___,             ___x___,              ___x___, ___x___, ___x___,  ___x___,   ___x___, ___x___, ___x___, ___x___, ___x___    },
+    {___x___, _______,             _______,              _______, ___x___, KC_SPACE, KC_SPACE,  ___x___, _______, _______, _______, _______    }
   },
 
   /* Keyboard settings (KEYBOARD) layer
@@ -215,26 +214,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Shortcut (SHORTCUT) layer
    *
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │ ->  │ Pub │Prot │Priv │Func │Chan │     │     │     │Print│ RUN │     │
+   *                │ ->  │ Pub │Prot │Priv │Func │Chan │     │     │     │Debug│ RUN │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ =>  │Abstr│Stat │Final│ :=  │Range│Defer│ !=  │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ Ret │Funct│ Ns  │Class│Intrf│errne│ ife │     │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │ RES │ SO  │ SI  │ FSI │SOUT │   Space   │     │     │     │     │     │
+   *                │ RES │ SO  │ SI  │ FSI │SOUT │   Space   │ GEN │     │     │     │     │
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [SHORTCUT_LAYER] = {
-    {SKC_ARROW,         SKC_PUBLIC,   SKC_PROTECTED, SKC_PRIVATE,        SKC_FUNC,      SKC_CHAN,  ___x___,   ___x___, ___x___, SKC_PRINT, SC_RUN,  GOBACK_},
-    {SKC_DOUBLE_ARROW,  SKC_ABSTRACT, SKC_STATIC,    SKC_FINAL,          SKC_ASSIGN,    SKC_RANGE, SKC_DEFER, SKC_NE,  ___x___, ___x___,   ___x___, ___x___},
-    {SKC_RETURN,        SKC_FUNCTION, SKC_STATIC,    SKC_CLASS,          SKC_INTERFACE, SKC_ERRNE, SKC_IFE,   ___x___, ___x___, ___x___,   ___x___, ___x___},
-    {SC_RESUME_PROGRAM, SC_STEP_OVER, SC_STEP_INTO,  SC_FORCE_STEP_INTO, SC_STEP_OUT,   KC_SPC,    KC_SPC,    ___x___, ___x___, ___x___,   ___x___, _______}
+    {SKC_ARROW,         SKC_PUBLIC,   SKC_PROTECTED, SKC_PRIVATE,        SKC_FUNC,      SKC_CHAN,  ___x___,   ___x___,     ___x___, SC_DEBUG,  SC_RUN,  GOBACK_},
+    {SKC_DOUBLE_ARROW,  SKC_ABSTRACT, SKC_STATIC,    SKC_FINAL,          SKC_ASSIGN,    SKC_RANGE, SKC_DEFER, SKC_NE,      ___x___, ___x___,   ___x___, ___x___},
+    {SKC_RETURN,        SKC_FUNCTION, SKC_STATIC,    SKC_CLASS,          SKC_INTERFACE, SKC_ERRNE, SKC_IFE,   ___x___,     ___x___, ___x___,   ___x___, ___x___},
+    {SC_RESUME_PROGRAM, SC_STEP_OVER, SC_STEP_INTO,  SC_FORCE_STEP_INTO, SC_STEP_OUT,   KC_SPC,    KC_SPC,    SC_GENERATE, ___x___, ___x___,   ___x___, _______}
   },
 
   /* Extra (EXTRA) layer
    *
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │     │MS B2│MS Up│MS B1│MS WU│     │     │NLCK │  7  │  8  │  9  │  -  │
+   *                │ F4  │MS B2│MS Up│MS B1│MS WU│     │     │NLCK │  7  │  8  │  9  │  -  │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ CTL │MS L │MS Dn│MS R │MS WD│     │     │  =  │  4  │  5  │  6  │  +  │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -244,7 +243,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [EXTRA_LAYER] = {
-    {___x___, KC_BTN2, KC_MS_U, KC_BTN1, KC_WH_U, ___x___, ___x___, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_PMNS},
+    {KC_F4,   KC_BTN2, KC_MS_U, KC_BTN1, KC_WH_U, ___x___, ___x___, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_PMNS},
     {KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ___x___, ___x___, KC_PEQL, KC_P4, KC_P5,   KC_P6,   KC_PPLS},
     {KC_LSFT, KC_WH_L, KC_BTN3, KC_WH_R, KC_BTN4, ___x___, ___x___, KC_PSLS, KC_P1, KC_P2,   KC_P3,   KC_PENT},
     {GOBACK_, ___x___, KC_LALT, KC_LGUI, KC_BTN5, ___x___, ___x___, KC_PAST, KC_P0, KC_PCMM, KC_PDOT, KC_PENT}
@@ -416,7 +415,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     CMACRO(SKC_ASSIGN,       ":=")
     CMACRO(SKC_ERRNE,        " err != nil {")
     CMACRO(SKC_IFE,          "if err := ")
-    CMACRO(SKC_PRINT,        "print(")
   }
 
   return true;
