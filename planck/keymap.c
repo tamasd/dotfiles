@@ -98,6 +98,9 @@ enum planck_keycodes {
   SKC_ASSIGN,
   SKC_ERRNE,
   SKC_IFE,
+
+  // Rust stuff
+  SKC_UNIT,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -216,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
    *                │ ->  │ Pub │Prot │Priv │Func │Chan │     │     │     │Debug│ RUN │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │ =>  │Abstr│Stat │Final│ :=  │Range│Defer│ !=  │     │     │     │     │
+   *                │ =>  │Abstr│Stat │Final│ :=  │Range│Defer│ !=  │ ()  │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ Ret │Funct│ Ns  │Class│Intrf│errne│ ife │     │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
@@ -224,10 +227,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [SHORTCUT_LAYER] = {
-    {SKC_ARROW,         SKC_PUBLIC,   SKC_PROTECTED, SKC_PRIVATE,        SKC_FUNC,      SKC_CHAN,  ___x___,   ___x___,     ___x___, SC_DEBUG,  SC_RUN,  GOBACK_},
-    {SKC_DOUBLE_ARROW,  SKC_ABSTRACT, SKC_STATIC,    SKC_FINAL,          SKC_ASSIGN,    SKC_RANGE, SKC_DEFER, SKC_NE,      ___x___, ___x___,   ___x___, ___x___},
-    {SKC_RETURN,        SKC_FUNCTION, SKC_STATIC,    SKC_CLASS,          SKC_INTERFACE, SKC_ERRNE, SKC_IFE,   ___x___,     ___x___, ___x___,   ___x___, ___x___},
-    {SC_RESUME_PROGRAM, SC_STEP_OVER, SC_STEP_INTO,  SC_FORCE_STEP_INTO, SC_STEP_OUT,   KC_SPC,    KC_SPC,    SC_GENERATE, ___x___, ___x___,   ___x___, _______}
+    {SKC_ARROW,         SKC_PUBLIC,   SKC_PROTECTED, SKC_PRIVATE,        SKC_FUNC,      SKC_CHAN,  ___x___,   ___x___,     ___x___,  SC_DEBUG,  SC_RUN,  GOBACK_},
+    {SKC_DOUBLE_ARROW,  SKC_ABSTRACT, SKC_STATIC,    SKC_FINAL,          SKC_ASSIGN,    SKC_RANGE, SKC_DEFER, SKC_NE,      SKC_UNIT, ___x___,   ___x___, ___x___},
+    {SKC_RETURN,        SKC_FUNCTION, SKC_STATIC,    SKC_CLASS,          SKC_INTERFACE, SKC_ERRNE, SKC_IFE,   ___x___,     ___x___,  ___x___,   ___x___, ___x___},
+    {SC_RESUME_PROGRAM, SC_STEP_OVER, SC_STEP_INTO,  SC_FORCE_STEP_INTO, SC_STEP_OUT,   KC_SPC,    KC_SPC,    SC_GENERATE, ___x___,  ___x___,   ___x___, _______}
   },
 
   /* Extra (EXTRA) layer
@@ -415,6 +418,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     CMACRO(SKC_ASSIGN,       ":=")
     CMACRO(SKC_ERRNE,        " err != nil {")
     CMACRO(SKC_IFE,          "if err := ")
+    CMACRO(SKC_UNIT,         "()")
   }
 
   return true;
