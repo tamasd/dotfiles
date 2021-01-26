@@ -49,6 +49,7 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'vim-syntastic/syntastic'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins'  }
 Plug 'Shougo/denite.nvim'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 autocmd VimResized * wincmd =
@@ -76,7 +77,6 @@ let g:ctrlp_custom_ignore = {
 			\ }
 
 set list
-exe "set listchars=tab:>-,trail:\xb7,eol:$,nbsp:\xb7"
 set backspace=indent,eol,start
 map <C-TAB> :set invlist<CR>
 set invlist

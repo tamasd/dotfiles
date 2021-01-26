@@ -11,7 +11,7 @@
 	showbranch = auto
 [core]
 	pager = less -FRSX
-	symlinks = false
+	symlinks = true
 	excludesfile = /home/tamas/.gitignore_global
 [alias]
 	loggraph = log --graph --all --full-history --color --branches --decorate
@@ -37,6 +37,9 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [push]
 	default = tracking
+	gpgSign = if-asked
+[merge]
+	verifySignatures = true
 [mergetool]
 	keepBackup = true
 [difftool "sourcetree"]
@@ -46,9 +49,6 @@
 	algorithm = patience
 	compactionHeuristic = true
 	renameLimit = 1024
-[github]
-	user = tamasd
-	password = !security find-internet-password -a tamasd -s github.com -w | tr -d '\n'
 [commit]
 	gpgsign = true
 [filter "media"]
@@ -56,3 +56,5 @@
 	smudge = git-media-smudge %f
 [rebase]
 	autostash = true
+[pull]
+	rebase = true

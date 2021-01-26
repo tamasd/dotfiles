@@ -44,7 +44,6 @@ vendor
 .vimrc
 
 # Xcode
-*.lock
 *~.nib
 DerivedData/
 build/

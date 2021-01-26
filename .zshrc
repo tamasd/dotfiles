@@ -1,11 +1,13 @@
-export GOROOT="$HOME/.programs/go"
-export GOROOT_BOOTSTRAP="$HOME/.programs/go14"
 export GOPATH="$HOME/prog/go"
 export GOBIN="$HOME/prog/go/bin"
+export GOROOT="$HOME/.programs/go"
 export GOOS="linux"
 export GOARCH="amd64"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$HOME/infra/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$PATH"
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+export COMPOSER_MIRROR_PATH_REPOS=1
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -54,11 +56,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal colored-man docker-compose docker drush git rebar golang rust sudo systemd tmux ubuntu vagrant web-search)
+plugins=(cabal colored-man docker-compose docker drush git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zaw/zaw.zsh
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 bindkey '^R' zaw-history
 bindkey '^B' zaw-git-branches
@@ -135,6 +140,7 @@ alias fuck='sudo $(fc -ln -1)'
 alias e=$EDITOR
 alias cg='cargo'
 alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
+alias mr_test='./scripts/phpunit-wrapper.sh web/modules/drupal_module/tests'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
