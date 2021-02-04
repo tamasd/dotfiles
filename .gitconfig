@@ -1,7 +1,7 @@
 [user]
 	name = Tamás Demeter-Haludka
-	email = yorirou@gmail.com
-	signingkey = 1528793A
+	email = tamas@demeter-haludka.hu
+	signingkey = AECD4A22A8C7F19583C0B03ECCAD8960035C19E0
 [color]
 	diff = auto
 	status = auto
