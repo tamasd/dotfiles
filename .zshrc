@@ -56,7 +56,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal colored-man docker-compose docker drush git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent)
+plugins=(cabal docker-compose docker drush git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent task)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -141,12 +141,17 @@ alias e=$EDITOR
 alias cg='cargo'
 alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
 alias mr_test='./scripts/phpunit-wrapper.sh web/modules/drupal_module/tests'
+alias btm='git checkout master && git pull --no-verify-signatures origin master && git branch --merged | grep -v master | xargs git branch -d'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
 
 alias dir='ls'
 alias cd..='cd ..'
+
+function gtv () {
+	git tag -m $1 -s $1
+}
 
 ## COLOR SCHEME ##
 
@@ -171,4 +176,4 @@ export NUM_MINIONS=4
 # start tmux
 tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'
 
-eval `dircolors /home/tamas/.dir_colors/dircolors`
+eval `dircolors $HOME/.dir_colors/dircolors`

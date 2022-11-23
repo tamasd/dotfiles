@@ -1,0 +1,39 @@
+{
+    "markdownlint.customRules": [
+        "{docsmsft.docs-linting}/markdownlint-custom-rules/rules.js"
+    ],
+    "markdownlint.config": {
+        "MD028": false,
+        "MD025": {
+            "front_matter_title": ""
+        }
+    },
+    "files.insertFinalNewline": true,
+    "editor.fontFamily": "'SauceCodePro Nerd Font', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "redhat.telemetry.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "editor.fontSize": 12,
+    "go.editorContextMenuCommands": {
+        "removeTags": true,
+        "fillStruct": true
+    },
+    "go.lintTool": "golangci-lint",
+    "editor.suggest.preview": true,
+    "editor.suggest.localityBonus": true,
+    "telemetry.telemetryLevel": "off",
+    "workbench.colorCustomizations": {},
+    "editor.tokenColorCustomizations": {},
+    "editor.semanticTokenColorCustomizations": {},
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Solarized Dark+",
+    "database-client.highlightSQLBlock": true,
+    "files.eol": "\n",
+    "go.toolsManagement.autoUpdate": true,
+    "editor.stickyScroll.enabled": true,
+    "editor.suggestSelection": "recentlyUsed",
+    "editor.suggest.matchOnWordStartOnly": false,
+    "editor.suggest.showStatusBar": true,
+    "tabnine.experimentalAutoImports": true
+}
