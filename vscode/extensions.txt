@@ -1,16 +1,3 @@
-blackmist.LinkCheckMD
-DavidAnson.vscode-markdownlint
-docsmsft.docs-article-templates
-docsmsft.docs-authoring-pack
-docsmsft.docs-build
-docsmsft.docs-images
-docsmsft.docs-linting
-docsmsft.docs-markdown
-docsmsft.docs-metadata
-docsmsft.docs-preview
-docsmsft.docs-scaffolding
-docsmsft.docs-visual-areas
-docsmsft.docs-yaml
 jebbs.plantuml
 ms-azuretools.vscode-docker
 ms-vscode-remote.remote-containers
