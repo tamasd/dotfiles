@@ -24,3 +24,5 @@ cargo install cargo-edit
 cargo install cargo-nextest
 cargo install cargo-tarpaulin
 cargo install cargo-udeps
+cargo install drill
+cargo install oha

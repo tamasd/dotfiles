@@ -49,5 +49,8 @@ RUN ldconfig /usr/local/lib
 RUN mkdir /cargo-target
 RUN chmod 777 /cargo-target
 ENV CARGO_TARGET_DIR /cargo-target
+ENV RUST_LOG debug
+ENV OTEL_EXPORTER_JAEGER_AGENT_HOST jaeger
+ENV OTEL_EXPORTER_JAEGER_ENDPOINT http://jaeger:14268/api/traces
 
 COPY post-create.sh /post-create.sh
