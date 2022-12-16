@@ -7,6 +7,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
         bash \
         ca-certificates \
         clang \
+        cmake \
         curl \
         fd-find \
         fzf \
