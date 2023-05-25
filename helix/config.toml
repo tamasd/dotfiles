@@ -1,0 +1,24 @@
+theme = "solarized_dark"
+
+[editor]
+mouse = true
+true-color = true
+bufferline = "never"
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["diagnostics", "workspace-diagnostics"]
+right = ["file-type", "version-control", "selections", "position", "total-line-numbers", "file-encoding", "file-line-ending"]
+
+[editor.lsp]
+enable = true
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+snippets = true
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
