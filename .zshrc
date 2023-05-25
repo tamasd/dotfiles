@@ -4,7 +4,7 @@ export GOROOT="$HOME/.programs/go"
 export GOOS="linux"
 export GOARCH="amd64"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export COMPOSER_MIRROR_PATH_REPOS=1
@@ -56,11 +56,10 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal docker-compose docker drush git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent task)
+plugins=(cabal docker-compose docker git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent task)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zaw/zaw.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -148,6 +147,8 @@ alias -s coverprofile='go tool cover -html'
 
 alias dir='ls'
 alias cd..='cd ..'
+
+autoload -U compinit && compinit
 
 function gtv () {
 	git tag -m $1 -s $1
