@@ -1,14 +1,14 @@
 [cargo-new]
 name = 'Tamas Demeter-Haludka'
-email = ''
+email = 'tamas@demeter-haludka.hu'
 vcs = 'git'
 
 [build]
-jobs = 12
+jobs = 16
 rustflags = [
 	"-Ctarget-cpu=znver1",
 	"-Copt-level=2",
-	"-Ccodegen-units=12"
+	"-Ccodegen-units=16"
 ]
 
 [profile.dev]
