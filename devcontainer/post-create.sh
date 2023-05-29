@@ -27,3 +27,4 @@ cargo install cargo-udeps
 cargo install drill
 cargo install oha
 cargo install just
+cargo install --locked zellij

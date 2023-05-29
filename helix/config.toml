@@ -5,6 +5,7 @@ mouse = true
 true-color = true
 bufferline = "never"
 color-modes = true
+completion-trigger-len = 1
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "file-modification-indicator"]
@@ -22,3 +23,6 @@ snippets = true
 render = true
 skip-levels = 1
 
+[keys.normal]
+"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+"#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
