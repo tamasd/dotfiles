@@ -31,6 +31,17 @@ skip-levels = 1
 [keys.normal]
 "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 "#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
+C-h = "select_prev_sibling"
+C-j = "shrink_selection"
+C-k = "expand_selection"
+C-l = "select_next_sibling"
+G = "goto_file_end"
+V = ["select_mode", "extend_to_line_bounds"]
 
 [keys.normal."space"]
 "F" = "file_picker_in_current_buffer_directory"
+
+[keys.select]
+G = "goto_file_end"
+k = ["extend_line_up", "extend_to_line_bounds"]
+j = ["extend_line_down", "extend_to_line_bounds"]

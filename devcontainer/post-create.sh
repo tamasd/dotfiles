@@ -12,6 +12,7 @@ go install github.com/josharian/impl@latest
 go install golang.org/x/tools/cmd/goimports@latest
 go install golang.org/x/tools/gopls@latest
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
+go install github.com/jesseduffield/lazygit@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
@@ -27,4 +28,8 @@ cargo install cargo-udeps
 cargo install drill
 cargo install oha
 cargo install just
+cargo install gitui
 cargo install --locked zellij
+
+npm install -g typescript-language-server typescript
+npm install -g vscode-langservers-extracted

@@ -3,11 +3,13 @@ export GOBIN="$HOME/prog/go/bin"
 export GOROOT="$HOME/.programs/go"
 export GOOS="linux"
 export GOARCH="amd64"
+export NPM_PACKAGES="${HOME}/.npm-packages"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$NPM_PACKAGES/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export COMPOSER_MIRROR_PATH_REPOS=1
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -141,6 +143,7 @@ alias cg='cargo'
 alias drupal_fuck_you_config='for i in `ls -1 | sed -e "s/\.yml$//"`; do drush config-delete $i; done'
 alias mr_test='./scripts/phpunit-wrapper.sh web/modules/drupal_module/tests'
 alias btm='git checkout master && git pull --no-verify-signatures origin master && git branch --merged | grep -v master | xargs git branch -d'
+alias pp='playerctl play-pause'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
@@ -170,9 +173,6 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 export TERM=xterm-256color
 
 ulimit -S -n 4096
-
-export KUBERNETES_PROVIDER=vagrant
-export NUM_MINIONS=4
 
 # start tmux
 tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'
