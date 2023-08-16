@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 go install github.com/cweill/gotests/gotests@latest
 go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
 go install github.com/fatih/gomodifytags@latest
@@ -19,17 +21,20 @@ rustup component add rust-analyzer
 rustup component add rust-src
 rustup component add rustfmt
 
-cargo install cargo-audit --features=fix
-cargo install cargo-check
-cargo install cargo-edit
-cargo install cargo-nextest
-cargo install cargo-tarpaulin
-cargo install cargo-udeps
-cargo install drill
-cargo install oha
-cargo install just
-cargo install gitui
+cargo install --locked cargo-audit --features=fix
+cargo install --locked cargo-edit
+cargo install --locked cargo-outdated
+cargo install --locked cargo-tarpaulin
+cargo install --locked drill
+cargo install --locked oha
+cargo install --locked just
+cargo install --locked gitui
+cargo install --locked taplo-cli --features=lsp
 cargo install --locked zellij
 
+npm install -g awk-language-server
+npm install -g bash-language-server
+npm install -g dockerfile-language-server-nodejs
 npm install -g typescript-language-server typescript
+npm install -g yaml-language-server
 npm install -g vscode-langservers-extracted
