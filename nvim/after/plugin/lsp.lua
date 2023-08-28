@@ -19,7 +19,12 @@ lsp.set_preferences({
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
+local root = function()
+    return vim.fn.getcwd()
+end
+
 lspconfig.rust_analyzer.setup({
+    root_dir = root,
     settings = {
         ["rust-analyzer"] = {
             assist = {
@@ -46,7 +51,7 @@ lspconfig.rust_analyzer.setup({
 lspconfig.gopls.setup({
     cmd = { "gopls", "serve" },
     filetypes = { "go", "gomod" },
-    root_dir = util.root_pattern("go.work", "go.mod"),
+    root_dir = root,
     settings = {
         gopls = {
             analyses = {
@@ -123,7 +128,12 @@ lspconfig.gopls.setup({
     },
 })
 
+lspconfig.golangci_lint_ls.setup({
+    root_dir = root,
+})
+
 lspconfig.lua_ls.setup({
+    root_dir = root,
     settings = {
         Lua = {
             hint = {
@@ -136,6 +146,10 @@ lspconfig.lua_ls.setup({
             }
         }
     }
+})
+
+lspconfig.sqlls.setup({
+    root_dir = root,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {

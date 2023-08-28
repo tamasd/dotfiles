@@ -24,6 +24,7 @@ require("lazy").setup({
     },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
+    { "lewis6991/gitsigns.nvim" },
     { "nvim-treesitter/nvim-treesitter-context" },
     {
         "VonHeikemen/lsp-zero.nvim",
