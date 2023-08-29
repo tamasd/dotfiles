@@ -60,7 +60,7 @@ require("lazy").setup({
             window = { blend = 0 },
         }
     },
-    { "svrana/neosolarized.nvim",    dependencies = { "tjdevries/colorbuddy.nvim" }, opts = {} },
+    { "svrana/neosolarized.nvim",    dependencies = { "tjdevries/colorbuddy.nvim" } },
     {
         "smoka7/multicursors.nvim",
         event = "VeryLazy",

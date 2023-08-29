@@ -53,6 +53,7 @@ lspconfig.gopls.setup({
     filetypes = { "go", "gomod" },
     root_dir = root,
     settings = {
+        semanticTokens = true,
         gopls = {
             analyses = {
                 assign = true,
@@ -165,6 +166,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 lsp.on_attach(function(client, bufnr)
+    if client.name == 'gopls' then
+        client.server_capabilities.semanticTokensProvider = {
+            full = true,
+            legend = {
+                tokenTypes = { 'namespace', 'type', 'class', 'enum', 'interface', 'struct', 'typeParameter', 'parameter',
+                    'variable', 'property', 'enumMember', 'event', 'function', 'method', 'macro', 'keyword', 'modifier',
+                    'comment', 'string', 'number', 'regexp', 'operator', 'decorator' },
+                tokenModifiers = { 'declaration', 'definition', 'readonly', 'static', 'deprecated', 'abstract', 'async',
+                    'modification', 'documentation', 'defaultLibrary' }
+            }
+        }
+    end
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp.default_keymaps({ buffer = bufnr })
