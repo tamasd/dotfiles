@@ -17,7 +17,6 @@ lsp.set_preferences({
 })
 
 local lspconfig = require("lspconfig")
-local util = require("lspconfig/util")
 
 local root = function()
     return vim.fn.getcwd()
@@ -106,7 +105,12 @@ lspconfig.gopls.setup({
                 unusedwrite = true,
                 useany = true,
             },
+            usePlaceholders = true,
+            completeUnimported = true,
             staticcheck = true,
+            matcher = 'Fuzzy',
+            diagnosticsDelay = '500ms',
+            symbolMatcher = 'fuzzy',
             hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -166,18 +170,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 lsp.on_attach(function(client, bufnr)
-    if client.name == 'gopls' then
-        client.server_capabilities.semanticTokensProvider = {
-            full = true,
-            legend = {
-                tokenTypes = { 'namespace', 'type', 'class', 'enum', 'interface', 'struct', 'typeParameter', 'parameter',
-                    'variable', 'property', 'enumMember', 'event', 'function', 'method', 'macro', 'keyword', 'modifier',
-                    'comment', 'string', 'number', 'regexp', 'operator', 'decorator' },
-                tokenModifiers = { 'declaration', 'definition', 'readonly', 'static', 'deprecated', 'abstract', 'async',
-                    'modification', 'documentation', 'defaultLibrary' }
-            }
-        }
-    end
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp.default_keymaps({ buffer = bufnr })
@@ -239,3 +231,13 @@ end, { desc = "lsp hover" })
 vim.keymap.set("n", "<leader>a", function()
     vim.lsp.buf.code_action()
 end, { desc = "code actions" })
+
+vim.keymap.set("n", "<leader>ls", function()
+    vim.lsp.codelens.refresh()
+end, { desc = "show codelens" })
+vim.keymap.set("n", "<leader>lr", function()
+    vim.lsp.codelens.run()
+end, { desc = "run codelens" })
+vim.keymap.set("n", "<leader>lc", function()
+    vim.lsp.codelens.clear()
+end, { desc = "hide codelens" })

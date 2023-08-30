@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     end
 })
 
+vim.opt.ignorecase = true
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
