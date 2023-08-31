@@ -3,27 +3,27 @@ local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
 
 telescope.setup({
-    defaults = {
-        layout_strategy = "horizontal",
-        layout_config = {
-            horizontal = {
-                prompt_position = "top",
-            },
-        },
-        sorting_strategy = "ascending",
-    },
+	defaults = {
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "top",
+			},
+		},
+		sorting_strategy = "ascending",
+	},
 })
 
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "find files (working dir)" })
 vim.keymap.set("n", "<leader>F", function()
-    builtin.find_files({ cwd = utils.buffer_dir() })
+	builtin.find_files({ cwd = utils.buffer_dir() })
 end, { desc = "find files (same dir)" })
 vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "buffers" })
 vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "grep" })
 vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, { desc = "document symbols" })
 vim.keymap.set("n", "<leader>S", builtin.lsp_dynamic_workspace_symbols, { desc = "workspace symbols" })
 vim.keymap.set("n", "<leader>d", function()
-    builtin.diagnostics({ bufnr = 0 })
+	builtin.diagnostics({ bufnr = 0 })
 end, { desc = "document diagnostics" })
 vim.keymap.set("n", "<leader>D", builtin.diagnostics, { desc = "workspace diagnostics" })
 vim.keymap.set("n", "<leader>j", builtin.jumplist, { desc = "jumplist" })

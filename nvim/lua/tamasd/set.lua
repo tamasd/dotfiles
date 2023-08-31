@@ -1,14 +1,14 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.api.nvim_create_autocmd("InsertEnter", {
-    callback = function()
-        vim.opt.relativenumber = false
-    end
+	callback = function()
+		vim.opt.relativenumber = false
+	end
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
-    callback = function()
-        vim.opt.relativenumber = true
-    end
+	callback = function()
+		vim.opt.relativenumber = true
+	end
 })
 
 vim.opt.ignorecase = true
@@ -16,7 +16,7 @@ vim.opt.ignorecase = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 
 vim.opt.smartindent = true
 
@@ -37,3 +37,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
+vim.opt.autoread = true

@@ -16,4 +16,4 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" 
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
 
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "replace word under cursor" })
+	{ desc = "replace word under cursor" })

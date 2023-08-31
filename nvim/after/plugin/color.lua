@@ -1,6 +1,6 @@
 local n = require("neosolarized").setup({
-    comment_italics = true,
-    background_set = true,
+	comment_italics = true,
+	background_set = true,
 })
 
 -- mute/fix the colors
