@@ -10,6 +10,12 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 		vim.opt.relativenumber = true
 	end
 })
+vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
+	pattern = "*",
+	command = "wincmd =",
+})
+
+vim.opt.equalalways = true
 
 vim.opt.ignorecase = true
 

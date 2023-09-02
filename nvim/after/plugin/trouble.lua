@@ -1,3 +1,12 @@
-vim.keymap.set("n", "<leader>q", "<cmd>TroubleToggle quickfix<cr>",
-	{ silent = true, noremap = true }
-)
+local trouble = require("trouble")
+trouble.setup({})
+
+vim.keymap.set("n", "<leader>tq", function()
+	trouble.toggle("quickfix")
+end, { silent = true, noremap = true, desc = "trouble quickfix" })
+vim.keymap.set("n", "<leader>tt", function()
+	trouble.toggle("document_diagnostics")
+end, { silent = true, noremap = true, desc = "trouble document diagnostics" })
+vim.keymap.set("n", "<leader>td", function()
+	trouble.toggle("workspace_diagnostics")
+end, { silent = true, noremap = true, desc = "trouble workspace diagnostics" })
