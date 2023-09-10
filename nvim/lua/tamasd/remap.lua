@@ -17,3 +17,5 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })
 
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "replace word under cursor" })
+
+vim.keymap.set("n", "<Tab>", "<cmd>wincmd w<cr>", { desc = "Switch windows" })
