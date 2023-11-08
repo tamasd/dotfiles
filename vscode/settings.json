@@ -1,39 +1,44 @@
 {
-    "markdownlint.customRules": [
-        "{docsmsft.docs-linting}/markdownlint-custom-rules/rules.js"
-    ],
-    "markdownlint.config": {
-        "MD028": false,
-        "MD025": {
-            "front_matter_title": ""
-        }
-    },
     "files.insertFinalNewline": true,
     "editor.fontFamily": "'SauceCodePro Nerd Font', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "redhat.telemetry.enabled": false,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.currentLine.enabled": false,
-    "gitlens.hovers.currentLine.over": "line",
     "editor.fontSize": 12,
-    "go.editorContextMenuCommands": {
-        "removeTags": true,
-        "fillStruct": true
-    },
-    "go.lintTool": "golangci-lint",
     "editor.suggest.preview": true,
     "editor.suggest.localityBonus": true,
     "telemetry.telemetryLevel": "off",
-    "workbench.colorCustomizations": {},
     "editor.tokenColorCustomizations": {},
     "editor.semanticTokenColorCustomizations": {},
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Solarized Dark+",
-    "database-client.highlightSQLBlock": true,
     "files.eol": "\n",
-    "go.toolsManagement.autoUpdate": true,
     "editor.stickyScroll.enabled": true,
     "editor.suggestSelection": "recentlyUsed",
     "editor.suggest.matchOnWordStartOnly": false,
     "editor.suggest.showStatusBar": true,
-    "tabnine.experimentalAutoImports": true
+    "workbench.colorTheme": "Solarized Dark+",
+    "workbench.preferredDarkColorTheme": "Solarized Dark+",
+    "workbench.colorCustomizations": {
+        "[Solarized Dark+]": {
+            "editorInlayHint.foreground": "#586e75",
+            "editorInlayHint.background": "#073642",
+            "editorInlayHint.typeForeground": "#657b83",
+            "editorInlayHint.parameterForeground": "#657b83",
+            "errorLens.warningBackground": "#073642",
+            "errorLens.warningForeground": "#cb4b16",
+            "errorLens.errorBackground": "#073642",
+            "errorLens.errorForeground": "#dc322f",
+            "errorLens.infoBackground": "#073642",
+            "errorLens.infoForeground": "#93a1a1",
+            "errorLens.hintBackground": "#073642",
+            "errorLens.hintForeground": "#839496",
+        }
+    },
+    "workbench.startupEditor": "none",
+    "git.enableCommitSigning": true,
+    "editor.minimap.enabled": false,
+    "rust-analyzer.hover.actions.references.enable": true,
+    "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+    "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
+    "rust-analyzer.imports.granularity.enforce": true,
+    "editor.formatOnSave": true,
+    "window.titleBarStyle": "custom"
 }

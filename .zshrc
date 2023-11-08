@@ -62,6 +62,7 @@ plugins=(cabal docker-compose docker git rebar golang rust sudo systemd tmux ubu
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zaw/zaw.plugin.zsh
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -178,3 +179,6 @@ ulimit -S -n 4096
 tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'
 
 eval `dircolors $HOME/.dir_colors/dircolors`
+
+# opam configuration
+[[ ! -r /home/tamas/.opam/opam-init/init.zsh ]] || source /home/tamas/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
