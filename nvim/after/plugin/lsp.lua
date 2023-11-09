@@ -4,7 +4,7 @@ local lsp = require("lsp-zero").preset({
 	},
 })
 
-lsp.nvim_workspace()
+lsp.nvim_lua_ls()
 
 lsp.set_preferences({
 	suggest_lsp_servers = false,
