@@ -19,3 +19,10 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 	{ desc = "replace word under cursor" })
 
 vim.keymap.set("n", "<Tab>", "<cmd>wincmd w<cr>", { desc = "Switch windows" })
+
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.goto_prev()
+end, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.goto_next()
+end, { desc = "Next diagnostic" })

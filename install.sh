@@ -10,6 +10,8 @@ rm .zshrc
 mkdir -p $HOME/.zsh
 git clone https://github.com/zsh-users/zaw.git $HOME/.zsh/zaw
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 for i in .alacritty.yml .ackrc .gitconfig .gitignore_global .npmrc .tmux.conf .vimrc .zshrc ; do
 	ln -s $D/$i $HOME/$i
 done

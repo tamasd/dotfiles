@@ -6,7 +6,7 @@ vcs = 'git'
 [build]
 jobs = 16
 rustflags = [
-	"-Ctarget-cpu=znver1",
+	"-Ctarget-cpu=native",
 	"-Copt-level=2",
 	"-Ccodegen-units=16"
 ]
