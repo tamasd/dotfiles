@@ -1,6 +1,24 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
+local state = require("telescope.actions.state")
+local actions = require("telescope.actions")
+
+local select_or_multi = function(prompt_bufnr)
+	local picker = state.get_current_picker(prompt_bufnr)
+	local multi = picker:get_multi_selection()
+
+	if not vim.tbl_isempty(multi) then
+		actions.close(prompt_bufnr)
+		for _, j in pairs(multi) do
+			if j.path ~= nil then
+				vim.cmd(string.format("%s %s", "edit", j.path))
+			end
+		end
+	else
+		actions.select_default(prompt_bufnr)
+	end
+end
 
 telescope.setup({
 	defaults = {
@@ -11,6 +29,19 @@ telescope.setup({
 			},
 		},
 		sorting_strategy = "ascending",
+		wrap_results = true,
+		dynamic_preview_title = true,
+		mappings = {
+			i = {
+				["<CR>"] = select_or_multi,
+			},
+		},
+	},
+	pickers = {
+		diagnostics = {
+			--line_width = "full", -- TODO check why this is broken
+			sort_by = "severity",
+		},
 	},
 })
 
