@@ -7,12 +7,10 @@ vcs = 'git'
 jobs = 16
 rustflags = [
 	"-Ctarget-cpu=native",
-	"-Copt-level=2",
-	"-Ccodegen-units=16"
+	"-Ccodegen-units=1"
 ]
 
 [profile.dev]
-debuginfo = 2
 debug-assertions = true
 debug = true
 
