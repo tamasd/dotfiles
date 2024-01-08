@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>c", "<cmd>Bunlink<cr>", { desc = "Buffer unlink" })
+vim.keymap.set("n", "<leader>_", "Ilet _=<esc>", { desc = "Prefix line with let _" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
