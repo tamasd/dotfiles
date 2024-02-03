@@ -11,7 +11,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("x", "<C-p>", [["_dP]], { desc = "replace text without overriding the register" })
-vim.keymap.set({ "n", "v" }, "<C-d>", [["_d]], { desc = "delete text without overriding the register" })
+vim.keymap.set({ "n", "v" }, "<A-d>", [["_d]], { desc = "delete text without overriding the register" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })

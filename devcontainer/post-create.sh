@@ -15,6 +15,7 @@ go install golang.org/x/tools/cmd/goimports@latest
 go install golang.org/x/tools/gopls@latest
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 go install github.com/jesseduffield/lazygit@latest
+go install github.com/sclevine/yj@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
@@ -26,6 +27,7 @@ cargo install --locked cargo-edit
 cargo install --locked cargo-outdated
 cargo install --locked cargo-tarpaulin
 cargo install --locked drill
+cargo install --locked flamegraph
 cargo install --locked oha
 cargo install --locked just
 cargo install --locked gitui
