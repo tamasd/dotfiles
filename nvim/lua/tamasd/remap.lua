@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader><leader>", "<C-^>", { desc = "Edit previous file" })
+vim.keymap.set("n", "<C-P>", "<C-I>")
+
 vim.keymap.set("n", "<leader>c", "<cmd>Bunlink<cr>", { desc = "Buffer unlink" })
 vim.keymap.set("n", "<leader>_", "Ilet _=<esc>", { desc = "Prefix line with let _" })
 
@@ -10,8 +13,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 -- fix J: keep the cursor
 vim.keymap.set("n", "J", "mzJ`z")
 
-vim.keymap.set("x", "<C-p>", [["_dP]], { desc = "replace text without overriding the register" })
-vim.keymap.set({ "n", "v" }, "<A-d>", [["_d]], { desc = "delete text without overriding the register" })
+vim.keymap.set("x", "_p", [["_dP]], { desc = "replace text without overriding the register" })
+vim.keymap.set({ "n", "v" }, "_d", [["_d]], { desc = "delete text without overriding the register" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "yank line to clipboard" })

@@ -135,6 +135,7 @@ alias e='eval $EDITOR'
 alias btm='git checkout master && git pull --no-verify-signatures origin master && git branch --merged | grep -v master | xargs git branch -d'
 alias pp='playerctl play-pause'
 alias j='just'
+alias pg='psql -h localhost -U postgres -W -d'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
