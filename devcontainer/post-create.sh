@@ -16,6 +16,8 @@ go install golang.org/x/tools/gopls@latest
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 go install github.com/jesseduffield/lazygit@latest
 go install github.com/sclevine/yj@latest
+go install github.com/zricethezav/gitleaks@latest
+go install github.com/wagoodman/dive@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
