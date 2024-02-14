@@ -18,6 +18,7 @@ go install github.com/jesseduffield/lazygit@latest
 go install github.com/sclevine/yj@latest
 go install github.com/zricethezav/gitleaks@latest
 go install github.com/wagoodman/dive@latest
+go install golang.org/x/tools/cmd/godoc@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
