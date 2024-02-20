@@ -5,7 +5,7 @@ export GOOS="linux"
 export GOARCH="amd64"
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.gem/bin:/snap/bin:$NPM_PACKAGES/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:/snap/bin:$NPM_PACKAGES/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export COMPOSER_MIRROR_PATH_REPOS=1
@@ -141,6 +141,15 @@ alias -s coverprofile='go tool cover -html'
 
 alias dir='ls'
 alias cd..='cd ..'
+
+## EXTRA COMPLETIONS ##
+mkdir -p $HOME/.zsh/completions
+fpath=($HOME/.zsh/completions $fpath)
+if [ ! -e $HOME/.zsh/completions/_just ]; then
+	if type "just" > /dev/null; then
+		just --completions zsh > $HOME/.zsh/completions/_just
+	fi
+fi
 
 autoload -U compinit && compinit
 
