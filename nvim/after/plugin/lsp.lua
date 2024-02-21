@@ -157,6 +157,19 @@ lspconfig.sqlls.setup({
 	root_dir = root,
 })
 
+lspconfig.erlangls.setup({
+	root_dir = root,
+})
+
+lspconfig.hls.setup({
+	root_dir = root,
+	filetypes = { "haskell", "lhaskell", "cabal" },
+})
+
+lspconfig.clangd.setup({
+	root_dir = root,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.lsp.buf.format()

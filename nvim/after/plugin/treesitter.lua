@@ -2,9 +2,11 @@ require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all"
 	ensure_installed = {
 		"bash",
+		"c",
 		"css",
 		"csv",
 		"dockerfile",
+		"erlang",
 		"git_config",
 		"git_rebase",
 		"gitattributes",
@@ -15,6 +17,8 @@ require("nvim-treesitter.configs").setup({
 		"gosum",
 		"gowork",
 		"gpg",
+		"haskell",
+		"haskell_persistent",
 		"html",
 		"ini",
 		"javascript",
