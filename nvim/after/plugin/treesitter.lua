@@ -37,6 +37,7 @@ require("nvim-treesitter.configs").setup({
 		"vimdoc",
 		"xml",
 		"yaml",
+		"zig",
 	},
 
 

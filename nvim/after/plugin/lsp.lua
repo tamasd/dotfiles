@@ -170,6 +170,14 @@ lspconfig.clangd.setup({
 	root_dir = root,
 })
 
+lspconfig.pyright.setup({
+	root_dir = root,
+})
+
+lspconfig.zls.setup({
+	root_dir = root,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.lsp.buf.format()
