@@ -20,6 +20,9 @@ go install github.com/zricethezav/gitleaks@latest
 go install github.com/wagoodman/dive@latest
 go install golang.org/x/tools/cmd/godoc@latest
 go install github.com/pressly/goose/v3/cmd/goose@latest
+go install github.com/charmbracelet/vhs@latest
+go install github.com/charmbracelet/soft-serve/cmd/soft@latest
+go install github.com/charmbracelet/glow@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
