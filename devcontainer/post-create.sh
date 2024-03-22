@@ -24,6 +24,7 @@ go install github.com/charmbracelet/vhs@latest
 go install github.com/charmbracelet/soft-serve/cmd/soft@latest
 go install github.com/charmbracelet/glow@latest
 go install github.com/charmbracelet/gum@latest
+go install github.com/spf13/cobra-cli@latest
 
 rustup component add clippy
 rustup component add rust-analyzer
