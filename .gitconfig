@@ -56,8 +56,13 @@
 	smudge = git-media-smudge %f
 [rebase]
 	autostash = true
+	updateRefs = true
 [pull]
 	rebase = true
 
 [init]
 	defaultBranch = master
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
