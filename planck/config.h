@@ -1,10 +1,9 @@
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
-
-#include "config_common.h"
+#pragma once
 
 #define STARTUP_SONG SONG(PLANCK_SOUND)
-//#define AUDIO_CLICKY
+// #define AUDIO_CLICKY
+#define AUDIO_ENABLE_TONE_MULTIPLEXING
+#define AUDIO_TONE_MULTIPLEXING_RATE_DEFAULT 10
 #define PREVENT_STUCK_MODIFIERS
 #define AUDIO_VOICES
 #define PERMISSIVE_HOLD
@@ -23,5 +22,3 @@
 #if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
 #define NO_PRINT
 #endif // !NO_PRINT
-
-#endif
