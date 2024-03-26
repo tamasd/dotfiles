@@ -138,6 +138,7 @@ alias pg='psql -h localhost -U postgres -W -d'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
+alias -s md='glow -p'
 
 alias dir='ls'
 alias cd..='cd ..'
