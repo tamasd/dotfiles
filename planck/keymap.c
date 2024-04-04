@@ -142,20 +142,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Directional navigation (NAV) layer
    *
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │     │ DL  │ DR  │     │ F4  │  +  │  -  │     │     │     │     │  *  │
+   *                │     │ DL  │ DR  │     │ F4  │  +  │  -  │Back │ Fwd │     │     │  *  │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ ESC │     │Home │PgUp │PgDn │ End │  ←  │  ↓  │  ↑  │  →  │     │ RET │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │     │     │     │     │     │     │     │     │     │     │
+   *                │     │Win+1│Win+2│Win+3│Win+4│Win+5│Win+6│Win+7│Win+8│Win+9│Win+0│     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
    *                │     │     │     │     │     │   Space   │     │     │     │     │     │
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [NAV_LAYER] = {
-    {___x___, RGUI(KC_LEFT), RGUI(KC_RIGHT), ___x___,    KC_F4,      KC_PLUS,     KC_MINUS,   ___x___,    ___x___,    ___x___,    ___x___,    KC_ASTERISK},
-    {KC_ESC,  ___x___,       KC_HOME,        KC_PGUP,    KC_PGDN,    KC_END,      KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    GOBACK_,    ___x___    },
-    {___x___, RGUI(KC_1),    RGUI(KC_2),     RGUI(KC_3), RGUI(KC_4), RGUI(KC_5),  RGUI(KC_6), RGUI(KC_7), RGUI(KC_8), RGUI(KC_9), RGUI(KC_0), ___x___    },
-    {___x___, _______,       _______,        _______,    ___x___,    KC_SPACE,    KC_SPACE,   ___x___,    _______,    _______,    _______,    _______    }
+    {___x___, RGUI(KC_LEFT), RGUI(KC_RIGHT), ___x___,    KC_F4,      KC_PLUS,     KC_MINUS,   LALT(KC_LEFT), LALT(KC_RGHT), ___x___,    ___x___,    KC_ASTERISK},
+    {KC_ESC,  ___x___,       KC_HOME,        KC_PGUP,    KC_PGDN,    KC_END,      KC_LEFT,    KC_DOWN,       KC_UP,         KC_RGHT,    GOBACK_,    ___x___    },
+    {___x___, RGUI(KC_1),    RGUI(KC_2),     RGUI(KC_3), RGUI(KC_4), RGUI(KC_5),  RGUI(KC_6), RGUI(KC_7),    RGUI(KC_8),    RGUI(KC_9), RGUI(KC_0), ___x___    },
+    {___x___, _______,       _______,        _______,    ___x___,    KC_SPACE,    KC_SPACE,   ___x___,       _______,       _______,    _______,    _______    }
   },
 
   /* Keyboard settings (KEYBOARD) layer
