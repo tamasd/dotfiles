@@ -22,3 +22,12 @@ n.Group.new("@namespace", n.colors.base1, n.colors.none, n.styles.italic)
 n.Group.link("@lsp.type.typeAlias.rust", n.groups.Type)
 n.Group.new("LspCodeLens", n.colors.base01, n.colors.base02)
 n.Group.new("@storageclass", n.colors.green)
+n.Group.new("Information", n.colors.base01)
+
+-- debug colors
+n.Group.new("DapStopped", n.colors.green)
+n.Group.new("DapStoppedLine", n.colors.green, n.colors.base02)
+n.Group.new("DapBreakpoint", n.colors.red)
+n.Group.new("DapBreakpointConditional", n.colors.orange)
+n.Group.new("DapBreakpointRejected", n.colors.base1)
+n.Group.new("DapLogPoint", n.colors.blue)

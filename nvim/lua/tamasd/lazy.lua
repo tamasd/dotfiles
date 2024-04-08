@@ -31,7 +31,7 @@ require("lazy").setup({
 		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim", opts = {} },
+			{ "williamboman/mason.nvim",          opts = {} },
 			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
@@ -62,24 +62,6 @@ require("lazy").setup({
 		}
 	},
 	{ "svrana/neosolarized.nvim",    dependencies = { "tjdevries/colorbuddy.nvim" } },
-	{
-		"smoka7/multicursors.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-			'smoka7/hydra.nvim',
-		},
-		opts = {},
-		cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-		keys = {
-			{
-				mode = { 'v', 'n' },
-				'<Leader>m',
-				'<cmd>MCstart<cr>',
-				desc = 'Create a selection for selected text or word under the cursor',
-			},
-		},
-	},
 	{ "nvim-tree/nvim-web-devicons", opts = { color_icons = true, default = true } },
 	{ "nvim-pack/nvim-spectre",      dependencies = { "nvim-lua/plenary.nvim" } },
 	{
@@ -102,8 +84,30 @@ require("lazy").setup({
 	{ "nvim-lualine/lualine.nvim" },
 	{ "mfussenegger/nvim-dap" },
 	{ "jay-babu/mason-nvim-dap.nvim" },
+	{ "theHamsta/nvim-dap-virtual-text" },
+	{ "rcarriga/nvim-dap-ui",               dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{
 		'numToStr/Comment.nvim',
 		lazy = false,
-	}
+	},
+	{ "leoluz/nvim-dap-go" },
+	{
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup({
+				lsp_cfg = false,
+				lsp_inlay_hints = {
+					enable = false,
+				},
+				diagnostic = false,
+			})
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", 'gomod' },
+	},
 })

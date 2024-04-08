@@ -55,6 +55,7 @@ lspconfig.gopls.setup({
 		semanticTokens = true,
 		gopls = {
 			analyses = {
+				appends = true,
 				assign = true,
 				atomic = true,
 				atomicalign = true,
@@ -65,6 +66,7 @@ lspconfig.gopls.setup({
 				copylocks = true,
 				deepequalerrors = true,
 				defer = true,
+				defers = true,
 				deprecated = true,
 				directive = true,
 				embed = true,
@@ -87,6 +89,7 @@ lspconfig.gopls.setup({
 				simplifycompositelit = true,
 				simplifyrange = true,
 				simplifyslice = true,
+				slog = true,
 				sortslice = true,
 				stdmethods = true,
 				stringintconv = true,
@@ -111,6 +114,8 @@ lspconfig.gopls.setup({
 			matcher = 'Fuzzy',
 			diagnosticsDelay = '500ms',
 			symbolMatcher = 'fuzzy',
+			completeFunctionCalls = true,
+			vulncheck = "Imports",
 			hints = {
 				assignVariableTypes = true,
 				compositeLiteralFields = true,
@@ -127,7 +132,14 @@ lspconfig.gopls.setup({
 				test = true,
 				tidy = true,
 				upgrade_dependency = true,
+				run_govulncheck = true,
 				vendor = false,
+			},
+			annotations = {
+				bounds = true,
+				escape = true,
+				inline = true,
+				["nil"] = true,
 			},
 		},
 	},
@@ -224,7 +236,7 @@ cmp.setup({
 	},
 	enabled = function()
 		-- disable completion in comments
-		local context = require "cmp.config.context"
+		local context = require("cmp.config.context")
 		-- keep command mode completion enabled when cursor is in a comment
 		if vim.api.nvim_get_mode().mode == "c" then
 			return true
