@@ -45,6 +45,8 @@ telescope.setup({
 	},
 })
 
+telescope.load_extension("ui-select")
+
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "find files (working dir)" })
 vim.keymap.set("n", "<leader>F", function()
 	builtin.find_files({ cwd = utils.buffer_dir() })

@@ -12,9 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, branch = "0.1.x" },
+	{ "nvim-telescope/telescope.nvim",          dependencies = { "nvim-lua/plenary.nvim" }, branch = "0.1.x" },
+	{ "nvim-telescope/telescope-ui-select.nvim" },
 	{ "folke/trouble.nvim" },
-	{ "windwp/nvim-autopairs",         event = "InsertEnter" },
+	{ "windwp/nvim-autopairs",                  event = "InsertEnter" },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
@@ -87,7 +88,7 @@ require("lazy").setup({
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "rcarriga/nvim-dap-ui",               dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{
-		'numToStr/Comment.nvim',
+		"numToStr/Comment.nvim",
 		lazy = false,
 	},
 	{ "leoluz/nvim-dap-go" },
@@ -108,6 +109,6 @@ require("lazy").setup({
 			})
 		end,
 		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
+		ft = { "go", "gomod" },
 	},
 })

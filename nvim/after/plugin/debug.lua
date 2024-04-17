@@ -13,7 +13,21 @@ require("mason-nvim-dap").setup({
 })
 
 -- this is needed so both default profiles and launch.json work
-dap.adapters.go = dap.adapters.delve
+-- this also fixes remote debugging
+dap.adapters.go = function(callback, client_config)
+	local adapter_config = vim.deepcopy(dap.adapters.delve, false)
+
+	if client_config.mode ~= "remote" then
+		callback(adapter_config)
+		return
+	end
+
+	local listener_addr = client_config.host .. ":" .. client_config.port
+	adapter_config.port = client_config.port
+	adapter_config.executable.args = { "dap", "-l", listener_addr }
+
+	callback(adapter_config)
+end
 
 vim.keymap.set("n", "<F6>", function()
 	dap.toggle_breakpoint()

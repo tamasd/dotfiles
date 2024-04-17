@@ -35,13 +35,28 @@ lspconfig.rust_analyzer.setup({
 			check = {
 				features = "all",
 			},
+			diagnostics = {
+				styleLints = { enable = true },
+			},
+			lens = {
+				enable = true,
+				implementations = { enable = true },
+				references = {
+					adt = { enable = true },
+					enumVariant = { enable = true },
+					trait = { enable = true },
+				},
+				run = { enable = true },
+			},
 			inlayHints = {
-				bindingModeHints = { enable = false },
-				closureCaptureHints = { enable = false },
+				bindingModeHints = { enable = true },
+				closureCaptureHints = { enable = true },
 				closureReturnTypeHints = { enable = true },
 				discriminantHints = { enable = true },
-				expressionAdjustmentHints = { enable = false },
-				lifetimeElisionHints = { enable = false },
+				expressionAdjustmentHints = { enable = false }, -- this looks very weird without proper inlay hint visualization
+				lifetimeElisionHints = { enable = true },
+				implicitDrops = { enable = true },
+				rangeExclusiveHints = { enable = true },
 			},
 		},
 	},
@@ -111,9 +126,9 @@ lspconfig.gopls.setup({
 			usePlaceholders = false,
 			completeUnimported = true,
 			staticcheck = true,
-			matcher = 'Fuzzy',
-			diagnosticsDelay = '500ms',
-			symbolMatcher = 'fuzzy',
+			matcher = "Fuzzy",
+			diagnosticsDelay = "500ms",
+			symbolMatcher = "fuzzy",
 			completeFunctionCalls = true,
 			vulncheck = "Imports",
 			hints = {
