@@ -2,8 +2,8 @@
 
 set -e
 
-mkdir -p .programs
-cd .programs
+mkdir -p $HOME/.programs
+cd $HOME/.programs
 
 FILENAME="go$1.linux-amd64.tar.gz"
 
