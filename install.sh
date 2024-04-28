@@ -14,7 +14,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s $D/bin $HOME/bin
 
-for i in .alacritty.yml .ackrc .gitconfig .gitignore_global .npmrc .tmux.conf .vimrc .zshrc ; do
+for i in .alacritty.toml .ackrc .gitconfig .gitignore_global .npmrc .tmux.conf .vimrc .zshrc ; do
 	ln -s $D/$i $HOME/$i
 done
 for i in psqlrc ; do

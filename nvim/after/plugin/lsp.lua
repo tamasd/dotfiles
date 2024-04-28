@@ -214,7 +214,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
 	lsp.default_keymaps({ buffer = bufnr })
@@ -223,7 +223,6 @@ end)
 lsp.setup()
 
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
 local lspkind = require("lspkind")
 local devicons = require("nvim-web-devicons")
 
@@ -250,6 +249,15 @@ cmp.setup({
 		completeopt = "menu,menuone,noinsert",
 	},
 	enabled = function()
+		-- disable in prompts and telescope
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		if buftype == "prompt" then
+			return false
+		end
+		if vim.bo.filetype == "TelescopePrompt" then
+			return false
+		end
+
 		-- disable completion in comments
 		local context = require("cmp.config.context")
 		-- keep command mode completion enabled when cursor is in a comment
@@ -296,3 +304,15 @@ end, { desc = "run codelens" })
 vim.keymap.set("n", "<leader>lc", function()
 	vim.lsp.codelens.clear()
 end, { desc = "hide codelens" })
+
+vim.keymap.set("n", "<F3>", function()
+	if vim.go.filetype == "go" then
+		require("go.alternate").switch(true, "")
+	end
+end, { desc = "switch between alternative files" })
+
+vim.keymap.set("n", "<F4>", function()
+	if vim.go.filetype == "go" then
+		require("go.gotest").test_func()
+	end
+end, { desc = "test function" })

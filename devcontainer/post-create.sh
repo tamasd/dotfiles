@@ -24,6 +24,7 @@ go install github.com/onsi/ginkgo/v2/ginkgo@latest
 go install github.com/pressly/goose/v3/cmd/goose@latest
 go install github.com/sclevine/yj@latest
 go install github.com/segmentio/golines@latest
+go install github.com/smartystreets/goconvey@latest
 go install github.com/spf13/cobra-cli@latest
 go install github.com/wagoodman/dive@latest
 go install github.com/zricethezav/gitleaks@latest
