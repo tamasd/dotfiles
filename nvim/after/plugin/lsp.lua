@@ -217,7 +217,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 lsp.on_attach(function(_, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
-	lsp.default_keymaps({ buffer = bufnr })
+	lsp.default_keymaps({
+		buffer = bufnr,
+		exclude = { "<F3>", "<F4>" },
+	})
 end)
 
 lsp.setup()
