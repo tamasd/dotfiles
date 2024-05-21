@@ -123,7 +123,7 @@ lspconfig.gopls.setup({
 				unusedwrite = true,
 				useany = true,
 			},
-			usePlaceholders = false,
+			usePlaceholders = true,
 			completeUnimported = true,
 			staticcheck = true,
 			matcher = "Fuzzy",
@@ -203,6 +203,9 @@ lspconfig.pyright.setup({
 
 lspconfig.zls.setup({
 	root_dir = root,
+	settings = {
+		enable_argument_placeholders = true,
+	},
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
