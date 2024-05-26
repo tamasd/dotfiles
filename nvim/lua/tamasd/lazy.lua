@@ -86,10 +86,6 @@ require("lazy").setup({
 	{ "jay-babu/mason-nvim-dap.nvim" },
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "rcarriga/nvim-dap-ui",               dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-	{
-		"numToStr/Comment.nvim",
-		lazy = false,
-	},
 	{ "leoluz/nvim-dap-go" },
 	{
 		"ray-x/go.nvim",
