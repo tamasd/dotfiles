@@ -51,8 +51,7 @@ require("lazy").setup({
 			{ "onsails/lspkind.nvim" },
 		}
 	},
-	{ "lvimuser/lsp-inlayhints.nvim" },
-	{ "ray-x/lsp_signature.nvim",    event = "VeryLazy" },
+	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
 	{ "ojroques/nvim-osc52" },
 	{
 		"j-hui/fidget.nvim",

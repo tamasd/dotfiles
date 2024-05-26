@@ -53,7 +53,7 @@ lspconfig.rust_analyzer.setup({
 				closureCaptureHints = { enable = true },
 				closureReturnTypeHints = { enable = true },
 				discriminantHints = { enable = true },
-				expressionAdjustmentHints = { enable = false }, -- this looks very weird without proper inlay hint visualization
+				expressionAdjustmentHints = { enable = true },
 				lifetimeElisionHints = { enable = true },
 				implicitDrops = { enable = true },
 				rangeExclusiveHints = { enable = true },
@@ -293,6 +293,8 @@ require("lsp_signature").setup({
 vim.diagnostic.config({
 	virtual_text = true
 })
+
+vim.lsp.inlay_hint.enable(true)
 
 vim.keymap.set("n", "K", function()
 	vim.lsp.buf.hover()

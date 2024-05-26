@@ -21,6 +21,7 @@ n.Group.new("@include", n.colors.green, n.colors.none, n.styles.bold)
 n.Group.new("@namespace", n.colors.base1, n.colors.none, n.styles.italic)
 n.Group.link("@lsp.type.typeAlias.rust", n.groups.Type)
 n.Group.new("LspCodeLens", n.colors.base01, n.colors.base02)
+n.Group.new("LspInlayHint", n.colors.base01, n.colors.none, n.styles.italic)
 n.Group.new("@storageclass", n.colors.green)
 n.Group.new("Information", n.colors.base01)
 
