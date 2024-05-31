@@ -1,7 +1,9 @@
-local n = require("neosolarized").setup({
+local n = require("neosolarized")
+n.setup({
 	comment_italics = true,
 	background_set = true,
 })
+n.set_colors()
 
 -- mute/fix the colors
 n.Group.new("PreProc", n.colors.base0)
