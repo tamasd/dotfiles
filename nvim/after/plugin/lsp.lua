@@ -233,6 +233,11 @@ local lspkind = require("lspkind")
 local devicons = require("nvim-web-devicons")
 
 cmp.setup({
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end
+	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping.confirm({ select = false }),
