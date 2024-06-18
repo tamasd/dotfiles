@@ -1,0 +1,7 @@
+[Unit]
+Description=Backup projects
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h
+ExecStart=%h/bin/backup.sh

@@ -1,0 +1,15 @@
+cmake
+fd
+go
+hunspell
+luarocks
+neovim
+node
+openjdk
+rebar3
+ripgrep
+rustup-init
+sd
+xclip
+zellij
+zig

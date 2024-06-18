@@ -46,13 +46,11 @@ cargo install --locked cargo-audit --features=fix
 cargo install --locked cargo-edit
 cargo install --locked cargo-outdated
 cargo install --locked cargo-tarpaulin
+cargo install --locked cargo-update
 cargo install --locked drill
 cargo install --locked flamegraph
-cargo install --locked gitui
-cargo install --locked just
 cargo install --locked oha
 cargo install --locked taplo-cli --features=lsp
-cargo install --locked zellij
 
 npm install -g awk-language-server
 npm install -g bash-language-server

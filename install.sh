@@ -5,16 +5,16 @@ set -xe
 D="$(realpath $(dirname $0))"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-rm .zshrc
+rm $HOME/.zshrc
 
 mkdir -p $HOME/.zsh
 git clone https://github.com/zsh-users/zaw.git $HOME/.zsh/zaw
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 ln -s $D/bin $HOME/bin
 
-for i in .alacritty.toml .ackrc .gitconfig .gitignore_global .npmrc .tmux.conf .vimrc .zshrc ; do
+for i in .alacritty.toml .ackrc .gitconfig .gitignore_global .npmrc .tmux.conf .zshrc ; do
 	ln -s $D/$i $HOME/$i
 done
 for i in psqlrc ; do
@@ -46,3 +46,11 @@ ln -s $D/nvim $HOME/.config/nvim
 ln -s $D/helix $HOME/.config/helix
 
 ln -s $D/dlv $HOME/.config/dlv
+
+mkdir -p $HOME/.config/systemd
+ln -s $D/systemd-user $HOME/.config/systemd/user
+
+systemctl --user daemon-reload
+systemctl --user enable backup.timer
+systemctl --user enable tmux.service
+systemctl --user start tmux.service

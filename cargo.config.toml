@@ -4,7 +4,6 @@ email = 'tamas@demeter-haludka.hu'
 vcs = 'git'
 
 [target.x86_64-unknown-linux-gnu]
-linker = "/usr/bin/clang"
 rustflags = [
 	"-Clink-arg=-fuse-ld=lld",
 	"-Clink-arg=-Wl,--no-rosegment",
@@ -15,7 +14,7 @@ rustflags = [
 [build]
 jobs = 16
 rustflags = [
-	"-Ctarget-cpu=native",
+	"-Ctarget-cpu=x86-64-v3",
 	"-Ccodegen-units=1"
 ]
 

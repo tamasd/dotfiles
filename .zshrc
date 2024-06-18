@@ -1,18 +1,28 @@
-export GOPATH="$HOME/prog/go"
-export GOBIN="$HOME/prog/go/bin"
-export GOROOT="$HOME/.programs/go"
 export GOOS="linux"
 export GOARCH="amd64"
 export GOAMD64="v3"
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.programs/bin:$HOME/.programs/go/bin:$HOME/prog/go/bin:$HOME/.programs/zig:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:/snap/bin:$NPM_PACKAGES/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export COMPOSER_MIRROR_PATH_REPOS=1
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
-# Path to your oh-my-zsh configuration.
+if [ "$HOMEBREW_PREFIX" != "" ]; then
+	export OPENSSL_DIR="$HOMEBREW_PREFIX/opt/openssl"
+	if [ "$PKG_CONFIG_PATH" != "" ]; then
+		export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+	else
+		export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/lib/pkgconfig"
+	fi
+	if [ "$CPATH" != "" ]; then
+		export CPATH="$HOMEBREW_PREFIX/include:$CPATH"
+	else
+		export CPATH="$HOMEBREW_PREFIX/include"
+	fi
+fi
+
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -21,48 +31,13 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="afowler"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment following line if you want to  shown in the command execution time stamp 
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal docker-compose docker git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent task)
+plugins=(cabal docker-compose docker git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zaw/zaw.plugin.zsh
 
 zstyle ':completion:*' use-cache on
@@ -107,34 +82,15 @@ alias l='ls'
 alias ssh='ssh -C'
 alias z='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 alias gap='git add -p'
-alias gc='git commit -S -m'
-alias gca='git commit -S -a -m'
-alias gcaa='git commit -S -a --amend'
-alias gstat='git status'
-alias gdiff='git diff'
-alias gdiffc='git diff --cached'
-alias gsom='git push origin master'
-alias glom='git pull origin master'
-alias gso='git push origin'
-alias glo='git pull origin'
-alias gpa='git push --all'
-alias gsync='git pull origin && git push origin'
-alias gsyncm='git pull origin master && git push origin master'
-alias gpp='git pull && git push'
 alias pdfmerge='gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output.pdf'
-alias g='git'
-alias gcas='git commit -a -m "Updates submodules."'
 alias c='xclip -selection c'
 alias v='xclip -selection clipboard -o'
 alias gt='go test -v ./...'
 alias gocover='go test -coverprofile=c.out ./... && go tool cover -html=c.out && rm c.out'
-alias pw='pwgen $((RANDOM%32+6)) 1'
 alias tmux='tmux -u'
-alias fuck='sudo $(fc -ln -1)'
 alias e='eval $EDITOR'
 alias btm='git checkout master && git pull --no-verify-signatures origin master && git branch --merged | grep -v master | xargs git branch -d'
 alias pp='playerctl play-pause'
-alias j='just'
 alias pg='psql -h localhost -U postgres -W -d'
 
 alias -s jar='java -jar'
@@ -151,6 +107,10 @@ if [ ! -e $HOME/.zsh/completions/_just ]; then
 	if type "just" > /dev/null; then
 		just --completions zsh > $HOME/.zsh/completions/_just
 	fi
+fi
+
+if [ ! -e $HOME/.zsh/completions/_task ]; then
+	curl https://raw.githubusercontent.com/go-task/task/main/completion/zsh/_task -o $HOME/.zsh/completions/_task
 fi
 
 autoload -U compinit && compinit
@@ -176,10 +136,7 @@ export TERM=xterm-256color
 
 ulimit -S -n 4096
 
-# start tmux
-tmux has &>/dev/null || systemd-run --scope --user tmux start \; new-session -d 'sleep 5'
-
-eval `dircolors $HOME/.dir_colors/dircolors`
+eval `dircolors $HOME/.dir_colors`
 
 # opam configuration
 [[ ! -r /home/tamas/.opam/opam-init/init.zsh ]] || source /home/tamas/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
