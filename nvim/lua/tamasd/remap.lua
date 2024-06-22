@@ -8,7 +8,7 @@ vim.keymap.set("n", "<leader>c", "<cmd>Bunlink<cr>", { desc = "Buffer unlink" })
 vim.keymap.set("n", "<leader>_", "Ilet _=<esc>", { desc = "Prefix line with let _" })
 vim.keymap.set("n", "<leader>;", "A;<esc>", { desc = "put the semicolon to the end of the line" })
 vim.keymap.set("n", "<leader>,", "A,<esc>", { desc = "put the colon to the end of the line" })
-vim.keymap.set("n", "<leader>p", ":!playerctl play-pause", { desc = "play/pause media" })
+vim.keymap.set("n", "<leader>p", ":!playerctl play-pause<cr><cr>", { desc = "play/pause media" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
