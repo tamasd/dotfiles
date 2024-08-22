@@ -65,6 +65,7 @@ end, { desc = "document diagnostics" })
 vim.keymap.set("n", "<leader>D", builtin.diagnostics, { desc = "workspace diagnostics" })
 vim.keymap.set("n", "<leader>j", builtin.jumplist, { desc = "jumplist" })
 vim.keymap.set("n", "<leader>'", builtin.resume, { desc = "reopen picker" })
+vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "marks" })
 
 vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "git status" })
 vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "git commits" })

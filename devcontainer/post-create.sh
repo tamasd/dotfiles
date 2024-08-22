@@ -45,16 +45,10 @@ rustup component add rustfmt
 cargo install --locked cargo-audit --features=fix
 cargo install --locked cargo-edit
 cargo install --locked cargo-outdated
+cargo install --locked cargo-show-asm
 cargo install --locked cargo-tarpaulin
 cargo install --locked cargo-update
 cargo install --locked drill
 cargo install --locked flamegraph
 cargo install --locked oha
 cargo install --locked taplo-cli --features=lsp
-
-npm install -g awk-language-server
-npm install -g bash-language-server
-npm install -g dockerfile-language-server-nodejs
-npm install -g typescript-language-server typescript
-npm install -g vscode-langservers-extracted
-npm install -g yaml-language-server

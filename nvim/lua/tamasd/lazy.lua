@@ -88,6 +88,14 @@ require("lazy").setup({
 	{ "rcarriga/nvim-dap-ui",               dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{ "leoluz/nvim-dap-go" },
 	{
+		"chentoast/marks.nvim",
+		config = function()
+			require("marks").setup({
+				default_mappings = true,
+			})
+		end
+	},
+	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",

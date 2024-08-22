@@ -208,6 +208,21 @@ lspconfig.zls.setup({
 	},
 })
 
+lspconfig.ols.setup({
+	root_dir = root,
+	settings = {
+		enable_format = true,
+		enable_hover = true,
+		enable_snippets = true,
+		enable_semantic_tokens = true,
+		enable_document_symbols = true,
+		enable_inlay_hints = true,
+		enable_procedure_snippet = true,
+		enable_references = true,
+		enable_rename = true,
+	}
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.lsp.buf.format()
