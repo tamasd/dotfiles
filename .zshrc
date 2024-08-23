@@ -21,6 +21,7 @@ if [ "$HOMEBREW_PREFIX" != "" ]; then
 	else
 		export CPATH="$HOMEBREW_PREFIX/include"
 	fi
+	export XDG_DATA_DIRS="$HOMEBREW_PREFIX/share:$XDG_DATA_DIRS"
 fi
 
 ZSH=$HOME/.oh-my-zsh
