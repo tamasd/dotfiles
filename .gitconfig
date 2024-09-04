@@ -25,8 +25,6 @@
 	ps = push
 	pl = pull
 	todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
-	newqa = !ruby $HOME/Sites/gittools/tools/gitflow_commands.rb newqa
-	cleanup = !ruby $HOME/Sites/gittools/tools/gitflow_commands.rb cleanup
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	assume	 = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
@@ -42,9 +40,6 @@
 	verifySignatures = true
 [mergetool]
 	keepBackup = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
@@ -59,7 +54,6 @@
 	updateRefs = true
 [pull]
 	rebase = true
-
 [init]
 	defaultBranch = master
 [branch]

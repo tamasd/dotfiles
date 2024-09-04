@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo $(cat /sys/class/hwmon/*/fan1_input)$(echo -e "\U000f0210")
+echo $(ls /sys/class/hwmon/*/fan1_input | head -n 1 | xargs cat)$(echo -e "\U000f0210")
