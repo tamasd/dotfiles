@@ -12,14 +12,15 @@ go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
 go install github.com/davidrjenni/reftools/cmd/fillswitch@latest
 go install github.com/fatih/gomodifytags@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
-go install github.com/go-task/task/v3/cmd/task@latest
 go install github.com/godoctor/godoctor@latest
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install github.com/go-task/task/v3/cmd/task@latest
 go install github.com/haya14busa/goplay/cmd/goplay@latest
 go install github.com/jesseduffield/lazygit@latest
 go install github.com/josharian/impl@latest
 go install github.com/koron/iferr@latest
 go install github.com/kyoh86/richgo@latest
+go install github.com/nametake/golangci-lint-langserver@latest
 go install github.com/onsi/ginkgo/v2/ginkgo@latest
 go install github.com/pressly/goose/v3/cmd/goose@latest
 go install github.com/sclevine/yj@latest
