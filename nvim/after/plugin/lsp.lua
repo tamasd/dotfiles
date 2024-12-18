@@ -1,8 +1,4 @@
-local lsp = require("lsp-zero").preset({
-	manage_nvim_cmp = {
-		set_sources = "recommended",
-	},
-})
+local lsp = require("lsp-zero").preset({})
 
 lsp.nvim_lua_ls()
 
@@ -17,6 +13,8 @@ lsp.set_preferences({
 })
 
 local lspconfig = require("lspconfig")
+local cmp = require("blink.cmp")
+local capabilities = cmp.get_lsp_capabilities()
 
 local root = function()
 	return vim.fn.getcwd()
@@ -60,6 +58,7 @@ lspconfig.rust_analyzer.setup({
 			},
 		},
 	},
+	capabilities = capabilities,
 })
 
 lspconfig.gopls.setup({
@@ -86,7 +85,6 @@ lspconfig.gopls.setup({
 				directive = true,
 				embed = true,
 				errorsas = true,
-				fieldalignment = true,
 				fillreturns = true,
 				fillstruct = true,
 				httpresponse = true,
@@ -158,10 +156,12 @@ lspconfig.gopls.setup({
 			},
 		},
 	},
+	capabilities = capabilities,
 })
 
 lspconfig.golangci_lint_ls.setup({
 	root_dir = root,
+	capabilities = capabilities,
 })
 
 lspconfig.lua_ls.setup({
@@ -175,37 +175,46 @@ lspconfig.lua_ls.setup({
 			},
 			diagnostics = {
 				globals = { "vim" },
-			}
-		}
-	}
+			},
+		},
+	},
+	capabilities = capabilities,
 })
 
 lspconfig.sqlls.setup({
 	root_dir = root,
+	capabilities = capabilities,
 })
 
 lspconfig.erlangls.setup({
 	root_dir = root,
+	capabilities = capabilities,
 })
 
 lspconfig.hls.setup({
 	root_dir = root,
 	filetypes = { "haskell", "lhaskell", "cabal" },
+	capabilities = capabilities,
 })
 
 lspconfig.clangd.setup({
 	root_dir = root,
+	capabilities = capabilities,
 })
 
 lspconfig.pyright.setup({
 	root_dir = root,
+	capabilities = capabilities,
 })
 
 lspconfig.zls.setup({
 	root_dir = root,
 	settings = {
 		enable_argument_placeholders = true,
+		enable_build_on_save = true,
+		build_on_save_step = "check",
 	},
+	capabilities = capabilities,
 })
 
 lspconfig.ols.setup({
@@ -220,7 +229,8 @@ lspconfig.ols.setup({
 		enable_procedure_snippet = true,
 		enable_references = true,
 		enable_rename = true,
-	}
+	},
+	capabilities = capabilities,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -242,66 +252,6 @@ lsp.on_attach(function(_, bufnr)
 end)
 
 lsp.setup()
-
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-local devicons = require("nvim-web-devicons")
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end
-	},
-	mapping = {
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping.confirm({ select = false }),
-		["<C-Space>"] = cmp.mapping.complete(),
-	},
-	formatting = {
-		format = function(entry, vim_item)
-			if vim.tbl_contains({ "path" }, entry.source.name) then
-				local icon, hl_group = devicons.get_icon(entry:get_completion_item().label)
-				if icon then
-					vim_item.kind = icon
-					vim_item.kind_hl_group = hl_group
-					return vim_item
-				end
-			end
-			return lspkind.cmp_format({ with_text = false })(entry, vim_item)
-		end,
-	},
-	completion = {
-		completeopt = "menu,menuone,noinsert",
-	},
-	enabled = function()
-		-- disable in prompts and telescope
-		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-		if buftype == "prompt" then
-			return false
-		end
-		if vim.bo.filetype == "TelescopePrompt" then
-			return false
-		end
-
-		-- disable completion in comments
-		local context = require("cmp.config.context")
-		-- keep command mode completion enabled when cursor is in a comment
-		if vim.api.nvim_get_mode().mode == "c" then
-			return true
-		else
-			return not context.in_treesitter_capture("comment")
-				and not context.in_syntax_group("Comment")
-		end
-	end,
-	preselect = cmp.PreselectMode.Item,
-	view = {
-		docs = { auto_open = true },
-	},
-	experimental = {
-		ghost_text = true,
-	},
-})
 
 require("lsp_signature").setup({
 	hint_enable = false,

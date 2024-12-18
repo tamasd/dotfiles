@@ -23,6 +23,14 @@ require("lazy").setup({
 			ts_update()
 		end
 	},
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("oil").setup()
+		end
+	},
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
 	{ "lewis6991/gitsigns.nvim" },
@@ -36,15 +44,46 @@ require("lazy").setup({
 			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-nvim-lua" },
+			{
+				"saghen/blink.cmp",
+				version = "v0.*",
+				opts = {
+					keymap = { preset = "default" },
+					appearance = {
+						use_nvim_cmp_as_default = true,
+						nerd_font_variant = "mono"
+					},
+					sources = {
+						default = { "lsp", "path", "luasnip", "buffer" },
+					},
+					signature = { enabled = true },
+					menu = {
+						draw = {
+							treesitter = { "lsp" },
+						},
+					},
+					documentation = {
+						auto_show = true,
+					},
+					ghost_text = {
+						enabled = true,
+					},
+					snippets = {
+						expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
+						active = function(filter)
+							if filter and filter.direction then
+								return require("luasnip").jumpable(filter.direction)
+							end
+							return require("luasnip").in_snippet()
+						end,
+						jump = function(direction) require("luasnip").jump(direction) end,
+					},
+				},
+				opts_extend = { "sources.default" },
+			},
 
 			-- Snippets
-			{ "L3MON4D3/LuaSnip" },
+			{ "L3MON4D3/LuaSnip",            version = "v2.*" },
 			{ "rafamadriz/friendly-snippets" },
 
 			-- Other

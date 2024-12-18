@@ -27,6 +27,8 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 vim.keymap.set("n", "<Tab>", "<cmd>wincmd w<cr>", { desc = "Switch windows" })
 
+vim.keymap.set("n", "-", "<cmd>Oil<cr>")
+
 vim.keymap.set("n", "[d", function()
 	vim.diagnostic.goto_prev()
 end, { desc = "Previous diagnostic" })
