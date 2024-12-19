@@ -283,6 +283,9 @@ vim.keymap.set("n", "<leader>lc", function()
 	vim.lsp.codelens.clear()
 end, { desc = "hide codelens" })
 
+vim.keymap.set("n", "<F2>", function()
+	vim.lsp.buf.rename()
+end)
 vim.keymap.set("n", "<F3>", function()
 	if vim.go.filetype == "go" then
 		require("go.alternate").switch(true, "")
