@@ -57,16 +57,18 @@ require("lazy").setup({
 						default = { "lsp", "path", "luasnip", "buffer" },
 					},
 					signature = { enabled = true },
-					menu = {
-						draw = {
-							treesitter = { "lsp" },
+					completion = {
+						menu = {
+							draw = {
+								treesitter = { "lsp" },
+							},
 						},
-					},
-					documentation = {
-						auto_show = true,
-					},
-					ghost_text = {
-						enabled = true,
+						documentation = {
+							auto_show = true,
+						},
+						ghost_text = {
+							enabled = true,
+						},
 					},
 					snippets = {
 						expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
