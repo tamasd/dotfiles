@@ -1,0 +1,6 @@
+font-family = SauceCodePro Nerd Font Mono
+font-size = 10
+theme = Solarized Dark - Patched
+fullscreen = true
+window-decoration = false
+#gtk-titlebar = false

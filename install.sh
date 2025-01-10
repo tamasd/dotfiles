@@ -44,6 +44,7 @@ gpg --import < $HOME/Sync/pubkey.asc
 mkdir -p $HOME/.config
 ln -s $D/nvim $HOME/.config/nvim
 ln -s $D/helix $HOME/.config/helix
+ln -s $D/ghostty $HOME/.config/ghostty
 
 ln -s $D/dlv $HOME/.config/dlv
 
