@@ -22,6 +22,8 @@ if [ "$HOMEBREW_PREFIX" != "" ]; then
 		export CPATH="$HOMEBREW_PREFIX/include"
 	fi
 	export XDG_DATA_DIRS="$HOMEBREW_PREFIX/share:$XDG_DATA_DIRS"
+	export LD_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$LD_LIBRARY_PATH"
+	export LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$LIBRARY_PATH"
 fi
 
 ZSH=$HOME/.oh-my-zsh

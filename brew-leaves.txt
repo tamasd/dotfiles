@@ -1,5 +1,6 @@
-autoconf
+btop
 cmake
+emscripten
 erlang
 fd
 gcc
@@ -7,16 +8,14 @@ go
 haskell-stack
 helix
 hunspell
-libxslt
 lua-language-server
 luarocks
 marksman
 micro
+nasm
 neovim
 odin
 opam
-openjdk
-pkg-config
 rebar3
 ripgrep
 rustup
