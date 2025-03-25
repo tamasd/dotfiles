@@ -1,5 +1,6 @@
 btop
 cmake
+ctop
 emscripten
 erlang
 fd
@@ -20,6 +21,8 @@ rebar3
 ripgrep
 rustup
 sd
+sdl3_image
+shaderc
 strace
 tmux
 tracy

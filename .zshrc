@@ -9,23 +9,6 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export COMPOSER_MIRROR_PATH_REPOS=1
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
-if [ "$HOMEBREW_PREFIX" != "" ]; then
-	export OPENSSL_DIR="$HOMEBREW_PREFIX/opt/openssl"
-	if [ "$PKG_CONFIG_PATH" != "" ]; then
-		export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-	else
-		export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/lib/pkgconfig"
-	fi
-	if [ "$CPATH" != "" ]; then
-		export CPATH="$HOMEBREW_PREFIX/include:$CPATH"
-	else
-		export CPATH="$HOMEBREW_PREFIX/include"
-	fi
-	export XDG_DATA_DIRS="$HOMEBREW_PREFIX/share:$XDG_DATA_DIRS"
-	export LD_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$LD_LIBRARY_PATH"
-	export LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$LIBRARY_PATH"
-fi
-
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -76,7 +59,7 @@ export GEM_HOME="$HOME/.gem"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR='nvim'
+export EDITOR='hx'
 
 ## ALIASES ##
 

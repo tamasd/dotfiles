@@ -35,3 +35,19 @@ end, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", function()
 	vim.diagnostic.goto_next()
 end, { desc = "Next diagnostic" })
+
+vim.keymap.set("n", "<F11>", function()
+	vim.cmd("!just run")
+end)
+
+vim.keymap.set("n", "<F12>", function()
+	vim.cmd("!just reload")
+end)
+
+vim.keymap.set("n", "<F23>", function()
+	vim.cmd("!just test")
+end)
+
+vim.keymap.set("n", "<F24>", function()
+	vim.cmd("!just debug")
+end)

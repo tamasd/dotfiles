@@ -1,4 +1,4 @@
-theme = "solarized_dark"
+theme = "solarized_dark_muted"
 
 [editor]
 mouse = true
@@ -6,6 +6,11 @@ true-color = true
 bufferline = "never"
 color-modes = true
 completion-trigger-len = 1
+completion-replace = false
+default-line-ending = "lf"
+line-number = "relative"
+clipboard-provider = "termcode"
+end-of-line-diagnostics = "info"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -13,9 +18,12 @@ normal = "block"
 select = "underline"
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name", "file-modification-indicator"]
-center = ["diagnostics", "workspace-diagnostics"]
-right = ["file-type", "version-control", "selections", "position", "total-line-numbers", "file-encoding", "file-line-ending"]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "spacer", "diagnostics"]
+center = []
+right = ["register", "file-type", "version-control", "position", "total-line-numbers", "file-encoding", "file-line-ending"]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
 
 [editor.lsp]
 enable = true
@@ -28,6 +36,10 @@ snippets = true
 render = true
 skip-levels = 1
 
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "disable"
+
 [keys.normal]
 "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 "#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
@@ -37,6 +49,19 @@ C-k = "expand_selection"
 C-l = "select_next_sibling"
 G = "goto_file_end"
 V = ["select_mode", "extend_to_line_bounds"]
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+i = ["collapse_selection", "insert_mode"]
+I = ["collapse_selection", "insert_at_line_start"]
+a = ["collapse_selection", "append_mode"]
+A = ["collapse_selection", "insert_at_line_end"]
+tab = ["rotate_view"]
+F2 = "rename_symbol"
+F11 = ":run-shell-command just run"
+F12 = ":run-shell-command just reload"
+F23 = ":run-shell-command just test"
+F24 = ":run-shell-command just debug"
+
 
 [keys.normal."space"]
 "F" = "file_picker_in_current_buffer_directory"
@@ -45,3 +70,11 @@ V = ["select_mode", "extend_to_line_bounds"]
 G = "goto_file_end"
 k = ["extend_line_up", "extend_to_line_bounds"]
 j = ["extend_line_down", "extend_to_line_bounds"]
+J = "move_line_down"
+K = "move_line_up"
+p = "replace_selections_with_clipboard"
+P = "paste_clipboard_before"
+i = "select_textobject_inner"
+a = "select_textobject_around"
+u = "switch_to_lowercase"
+U = "switch_to_uppercase"
