@@ -3,7 +3,7 @@ inherits = "solarized_dark"
 "attribute" = { fg = "base1", modifiers = ["bold"] }
 "keyword" = { fg = "green" }
 #"keyword.storage.type" = { fg = "base1" }
-"keyword.directive" = { fg = "orange" }
+"keyword.directive" = { fg = "magenta", modifiers = ["bold"] }
 "namespace" = { fg = "base1" }
 "operator" = { fg = "green" }
 "special" = { fg = "orange" }
@@ -15,7 +15,7 @@ inherits = "solarized_dark"
 "type.enum" = { fg = "cyan" }
 "constructor" = { fg = "blue" }
 "function" = { fg = "blue" }
-"function.macro" = { fg = "violet" }
+"function.macro" = { fg = "violet", modifiers = ["bold"] }
 "function.builtin" = { fg = "blue", modifiers = ["bold"] }
 "function.special" = { fg = "blue", modifiers = ["italic"] }
 "comment" = { fg = "base01" }

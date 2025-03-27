@@ -2,11 +2,10 @@ export GOOS="linux"
 export GOARCH="amd64"
 export GOAMD64="v3"
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
+#export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-export COMPOSER_MIRROR_PATH_REPOS=1
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 ZSH=$HOME/.oh-my-zsh
@@ -77,7 +76,7 @@ alias tmux='tmux -u'
 alias e='eval $EDITOR'
 alias btm='git checkout master && git pull --no-verify-signatures origin master && git branch --merged | grep -v master | xargs git branch -d'
 alias pp='playerctl play-pause'
-alias pg='psql -h localhost -U postgres -W -d'
+alias pg='psql -h localhost -U postgres -d'
 
 alias -s jar='java -jar'
 alias -s coverprofile='go tool cover -html'
@@ -123,6 +122,3 @@ export TERM=xterm-256color
 ulimit -S -n 4096
 
 eval `dircolors $HOME/.dir_colors`
-
-# opam configuration
-[[ ! -r /home/tamas/.opam/opam-init/init.zsh ]] || source /home/tamas/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

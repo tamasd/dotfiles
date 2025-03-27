@@ -2,8 +2,8 @@
 
 set -e
 
-mkdir -p $HOME/.programs
-cd $HOME/.programs
+mkdir -p $HOME/Tools
+cd $HOME/Tools
 
 FILENAME="zig-linux-x86_64-$1.tar.xz"
 
