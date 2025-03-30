@@ -65,6 +65,9 @@ F24 = ":run-shell-command just debug"
 
 [keys.normal."space"]
 "F" = "file_picker_in_current_buffer_directory"
+p = ":run-shell-command playerctl play-pause"
+";" = "@$a;<esc>"
+"," = "@$a,<esc>"
 
 [keys.select]
 G = "goto_file_end"

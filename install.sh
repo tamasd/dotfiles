@@ -49,9 +49,9 @@ ln -s $D/ghostty $HOME/.config/ghostty
 ln -s $D/dlv $HOME/.config/dlv
 
 mkdir -p $HOME/.config/systemd
-ln -s $D/systemd-user $HOME/.config/systemd/user
+for i in $D/systemd-user/* ; do
+	ln -s $i $HOME/.config/systemd/user/
+done
 
 systemctl --user daemon-reload
 systemctl --user enable backup.timer
-systemctl --user enable tmux.service
-systemctl --user start tmux.service
