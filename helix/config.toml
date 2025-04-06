@@ -68,6 +68,7 @@ F24 = ":run-shell-command just debug"
 p = ":run-shell-command playerctl play-pause"
 ";" = "@$a;<esc>"
 "," = "@$a,<esc>"
+r = ":reset-diff-change"
 
 [keys.select]
 G = "goto_file_end"
