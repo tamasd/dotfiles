@@ -73,7 +73,7 @@ inherits = "solarized_dark"
 "ui.statusline.inactive" = { fg = "base01", bg = "base02" }
 "ui.statusline.normal" = { fg = "base03", bg = "blue" }
 "ui.statusline.insert" = { fg = "base03", bg = "green" }
-"ui.statusline.select" = { fg = "base03", bg = "yellow" }
+"ui.statusline.select" = { fg = "base03", bg = "magenta" }
 
 "ui.selection" = { bg = "base0175" }
 "ui.selection.primary" = { bg = "base015" }
