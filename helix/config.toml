@@ -49,6 +49,7 @@ C-h = "select_prev_sibling"
 C-j = "shrink_selection"
 C-k = "expand_selection"
 C-l = "select_next_sibling"
+C-p = "jump_forward"
 G = "goto_file_end"
 V = ["select_mode", "extend_to_line_bounds"]
 "$" = "goto_line_end"
