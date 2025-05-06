@@ -1,27 +1,19 @@
 #!/bin/sh
 
+set -x
+
 rustup self update
 rustup update
 
-echo "updating helix..."
 $HOME/dotfiles/bin/update-helix.sh
-echo "updating odin..."
 $HOME/dotfiles/bin/update-odin.sh
-echo "updating ols..."
 $HOME/dotfiles/bin/update-ols.sh
-echo "updating go..."
 $HOME/dotfiles/bin/update-go.sh
-echo "updating zig..."
 $HOME/dotfiles/bin/update-zig.sh
-echo "updating zls..."
 $HOME/dotfiles/bin/update-zls.sh
-echo "updating erlang..."
 $HOME/dotfiles/bin/update-erlang.sh
-echo "updating rebar3..."
 $HOME/dotfiles/bin/update-rebar3.sh
-echo "updating erlang-ls..."
 $HOME/dotfiles/bin/update-erlang-ls.sh
-echo "updating elp..."
 $HOME/dotfiles/bin/update-elp.sh
 
 go install github.com/abice/go-enum@latest
