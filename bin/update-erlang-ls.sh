@@ -3,7 +3,7 @@
 set -e
 
 VERSION="$1"
-OTP_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION | grep -oP '^[\d]+')
+OTP_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION | grep -oP '^[\d]+' || echo)
 
 if [ -z "$1" ]; then
 	INSTALLED_VERSION=$(erlang_ls -v | grep -oP '[\d\.]+' || echo)

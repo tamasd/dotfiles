@@ -3,10 +3,10 @@
 set -e
 
 VERSION="$1"
-OTP_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION | grep -oP '^[\d]+\.[\d]+')
+OTP_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION | grep -oP '^[\d]+\.[\d]+' || echo)
 
 if [ -z "$1" ]; then
-	INSTALLED_VERSION=$(elp version | grep -oP '\d{4}-\d{2}-\d{2}')
+	INSTALLED_VERSION=$(elp version | grep -oP '\d{4}-\d{2}-\d{2}' || echo)
 	LATEST_VERSION=$(curl -s https://api.github.com/repos/WhatsApp/erlang-language-platform/releases/latest | jq -r '.tag_name')
 
 	if [ "$INSTALLED_VERSION" != "$LATEST_VERSION" ]; then
