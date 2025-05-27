@@ -22,7 +22,7 @@ select = "underline"
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "spacer", "diagnostics"]
 center = []
-right = ["register", "file-type", "version-control", "position", "total-line-numbers", "file-encoding", "file-line-ending"]
+right = ["selections", "register", "spacer", "file-type", "version-control", "spacer", "position", "total-line-numbers", "file-encoding", "file-line-ending"]
 mode.normal = "N"
 mode.insert = "I"
 mode.select = "S"

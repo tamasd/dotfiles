@@ -19,7 +19,7 @@ fi
 mkdir -p $HOME/Tools
 cd $HOME/Tools
 
-FILENAME="zig-linux-x86_64-$VERSION.tar.xz"
+FILENAME="zig-x86_64-linux-$VERSION.tar.xz"
 
 curl --fail -L -O "https://ziglang.org/download/$VERSION/$FILENAME"
 
@@ -33,7 +33,7 @@ fi
 
 tar -xJvf "$FILENAME"
 
-mv "zig-linux-x86_64-$VERSION" zig
+mv "zig-x86_64-linux-$VERSION" zig
 
 rm "$FILENAME"
 
