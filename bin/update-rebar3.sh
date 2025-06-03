@@ -18,5 +18,5 @@ fi
 
 mkdir -p $HOME/Tools/bin
 
-curl -L -o $HOME/Tools/bin/rebar3 https://github.com/erlang/rebar3/releases/download/3.24.0/rebar3
+curl -L -o $HOME/Tools/bin/rebar3 https://github.com/erlang/rebar3/releases/download/$VERSION/rebar3
 chmod +x $HOME/Tools/bin/rebar3

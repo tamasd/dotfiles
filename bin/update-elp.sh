@@ -28,7 +28,7 @@ if [ -z "$(echo "$RELEASE_INFO" | jq -r ".assets[].name | select(. == \"$FILENAM
   FILENAME=$(echo "$RELEASE_INFO" | jq -r ".assets[].name | select(test(\"elp-linux-x86_64-unknown-linux-gnu-otp-$OTP_MAJOR_VERSION\\\\.[0-9]+\\\\.tar\\\\.gz\"))" | sort | tail -n 1)
 fi
 
-curl --fail -L -O "https://github.com/WhatsApp/erlang-language-platform/releases/download/$VERSION/elp-linux-x86_64-unknown-linux-gnu-otp-27.1.tar.gz"
+curl --fail -L -O "https://github.com/WhatsApp/erlang-language-platform/releases/download/$VERSION/$FILENAME"
 
 tar -xzvf "$FILENAME"
 
