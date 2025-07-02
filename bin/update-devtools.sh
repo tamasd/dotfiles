@@ -25,6 +25,7 @@ go install github.com/charmbracelet/vhs@latest
 go install github.com/cweill/gotests/gotests@latest
 go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
 go install github.com/davidrjenni/reftools/cmd/fillswitch@latest
+go install github.com/derailed/k9s@latest
 go install github.com/fatih/gomodifytags@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
 go install github.com/go-task/task/v3/cmd/task@latest
@@ -33,6 +34,7 @@ go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 go install github.com/haya14busa/goplay/cmd/goplay@latest
 go install github.com/jesseduffield/lazygit@latest
 go install github.com/josharian/impl@latest
+go install github.com/k3d-io/k3d/v5@latest
 go install github.com/koron/iferr@latest
 go install github.com/kyoh86/richgo@latest
 go install github.com/nametake/golangci-lint-langserver@latest
