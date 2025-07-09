@@ -25,7 +25,7 @@ RELEASE_INFO=$(curl -s https://api.github.com/repos/WhatsApp/erlang-language-pla
 FILENAME="elp-linux-x86_64-unknown-linux-gnu-otp-$OTP_VERSION.tar.gz"
 if [ -z "$(echo "$RELEASE_INFO" | jq -r ".assets[].name | select(. == \"$FILENAME\")")" ]; then
   OTP_MAJOR_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION | grep -oP '^[\d]+')
-  FILENAME=$(echo "$RELEASE_INFO" | jq -r ".assets[].name | select(test(\"elp-linux-x86_64-unknown-linux-gnu-otp-$OTP_MAJOR_VERSION\\\\.[0-9]+\\\\.tar\\\\.gz\"))" | sort | tail -n 1)
+  FILENAME=$(echo "$RELEASE_INFO" | jq -r ".assets[].name | select(test(\"elp-linux-x86_64-unknown-linux-gnu-otp-$OTP_MAJOR_VERSION\\\\.tar\\\\.gz\"))" | sort | tail -n 1)
 fi
 
 curl --fail -L -O "https://github.com/WhatsApp/erlang-language-platform/releases/download/$VERSION/$FILENAME"
