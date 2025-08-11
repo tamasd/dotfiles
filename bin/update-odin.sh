@@ -19,7 +19,7 @@ fi
 mkdir -p $HOME/Tools
 cd $HOME/Tools
 
-FILENAME="odin-linux-amd64-dev-$VERSION.tar.gz"
+FILENAME="odin-linux-amd64-dev-$VERSION.zip"
 
 curl --fail -L -O "https://github.com/odin-lang/Odin/releases/download/dev-$VERSION/$FILENAME"
 
@@ -31,8 +31,10 @@ if [ -e odin ]; then
 	mv odin odin.old
 fi
 
-tar xzf "$FILENAME"
+unzip "$FILENAME"
 rm "$FILENAME"
+tar xzf dist.tar.gz
+rm dist.tar.gz
 
 mv odin-linux-amd64* odin
 

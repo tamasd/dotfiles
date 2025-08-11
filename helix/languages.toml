@@ -1,3 +1,8 @@
+[language-server.zls]
+config.warn_style = true
+config.highlight_global_var_declarations = true
+config.force_autofix = true
+
 [[language]]
 name = "go"
 auto-format = true

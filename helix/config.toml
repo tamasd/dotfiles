@@ -72,6 +72,9 @@ p = ":run-shell-command playerctl play-pause"
 ";" = "@$a;<esc>"
 "," = "@$a,<esc>"
 r = ":reset-diff-change"
+"t" = "@^f=atry <esc>"
+"T" = "@^itry <esc>"
+"_" = "@^i_=<esc>"
 
 [keys.select]
 G = "goto_file_end"

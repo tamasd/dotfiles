@@ -11,6 +11,7 @@ $HOME/dotfiles/bin/update-ols.sh
 $HOME/dotfiles/bin/update-go.sh
 $HOME/dotfiles/bin/update-zig.sh
 $HOME/dotfiles/bin/update-zls.sh
+$HOME/dotfiles/bin/update-glsl-analyzer.sh
 $HOME/dotfiles/bin/update-erlang.sh
 $HOME/dotfiles/bin/update-rebar3.sh
 $HOME/dotfiles/bin/update-erlang-ls.sh
