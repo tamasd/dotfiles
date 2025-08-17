@@ -2,8 +2,10 @@ inherits = "solarized_dark"
 
 "attribute" = { fg = "base1", modifiers = ["bold"] }
 "keyword" = { fg = "green" }
-#"keyword.storage.type" = { fg = "base1" }
 "keyword.directive" = { fg = "magenta", modifiers = ["bold"] }
+"keyword.storage.modifier" = { fg = "orange" }
+"keyword.control.return" = { fg = "yellow" }
+"keyword.control.exception" = { fg = "yellow", modifiers = ["bold"] }
 "namespace" = { fg = "base1" }
 "operator" = { fg = "green" }
 "special" = { fg = "orange" }
