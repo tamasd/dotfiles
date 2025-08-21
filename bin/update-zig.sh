@@ -6,7 +6,7 @@ VERSION="$1"
 
 if [ -z "$1" ]; then
 	INSTALLED_VERSION=$(zig version || echo)
-	LATEST_VERSION=$(curl -s https://api.github.com/repos/ziglang/zig/releases/latest | jq -r '.tag_name')
+	LATEST_VERSION=$(curl -s https://ziglang.org/download/index.json | jq -r '[ keys_unsorted | .[] | select(. | test("[0-9]\\.[0-9]+\\.[0-9]")) ] | first')
 
 	if [ "$INSTALLED_VERSION" != "$LATEST_VERSION" ]; then
 		VERSION="$LATEST_VERSION"
