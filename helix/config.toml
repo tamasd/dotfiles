@@ -60,10 +60,10 @@ a = ["collapse_selection", "append_mode"]
 A = ["collapse_selection", "insert_at_line_end"]
 tab = ["rotate_view"]
 F2 = "rename_symbol"
-F11 = ":run-shell-command just run"
-F12 = ":run-shell-command just reload"
-F23 = ":run-shell-command just test"
-F24 = ":run-shell-command just debug"
+F11 = ":run-shell-command make run"
+F12 = ":run-shell-command make reload"
+F23 = ":run-shell-command make test"
+F24 = ":run-shell-command make debug"
 
 
 [keys.normal."space"]
@@ -75,6 +75,7 @@ r = ":reset-diff-change"
 "t" = "@^f=atry <esc>"
 "T" = "@^itry <esc>"
 "_" = "@^i_=<esc>"
+C-d = "@ D%severity ERROR "
 
 [keys.select]
 G = "goto_file_end"

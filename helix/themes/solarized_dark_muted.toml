@@ -1,9 +1,10 @@
-inherits = "solarized_dark"
-
 "attribute" = { fg = "base1", modifiers = ["bold"] }
 "keyword" = { fg = "green" }
 "keyword.directive" = { fg = "magenta", modifiers = ["bold"] }
-"keyword.storage.modifier" = { fg = "orange" }
+"keyword.control" = { fg = "yellow", modifiers = ["bold"] }
+"keyword.control.conditional" = { fg = "green" }
+"keyword.control.import" = { fg = "green" }
+"keyword.control.repeat" = { fg = "green" }
 "keyword.control.return" = { fg = "yellow" }
 "keyword.control.exception" = { fg = "yellow", modifiers = ["bold"] }
 "namespace" = { fg = "base1" }
@@ -66,6 +67,9 @@ inherits = "solarized_dark"
 "ui.text" = { fg = "base1" }
 "ui.text.focus" = { fg = "blue", modifiers = ["bold"] }
 
+"ui.cursor" = {fg = "base02", bg = "cyan"}
+"ui.cursor.insert" = {fg = "base03", bg = "base3"}
+"ui.cursor.match" = { fg = "base03", bg = "base00" }
 "ui.cursor.primary" = { fg = "base03", bg = "base1" }
 "ui.cursor.select" = { fg = "base02", bg = "cyan" }
 "ui.cursorline.primary" = { bg = "base02" }
@@ -82,10 +86,6 @@ inherits = "solarized_dark"
 
 "ui.virtual.indent-guide" = { fg = "base02" }
 "ui.virtual.ruler" = { bg = "base02" }
-
-"ui.cursor" = {fg = "base02", bg = "cyan"}
-"ui.cursor.insert" = {fg = "base03", bg = "base3"}
-"ui.cursor.match" = { fg = "base03", bg = "base00" }
 
 "warning" =  { fg = "orange", modifiers = ["bold", "underlined"] }
 "error" = { fg = "red", modifiers = ["bold", "underlined"] }
