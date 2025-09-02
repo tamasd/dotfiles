@@ -48,6 +48,9 @@ ln -s $D/ghostty $HOME/.config/ghostty
 
 ln -s $D/dlv $HOME/.config/dlv
 
+mkdir -p $HOME/.config/lazygit
+ln -s $D/lazygit/config.yml $HOME/.config/lazygit/
+
 mkdir -p $HOME/.config/systemd
 for i in $D/systemd-user/* ; do
 	ln -s $i $HOME/.config/systemd/user/

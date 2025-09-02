@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+gui:
+  nerdFontsVersion: "3"
+git:
+  autoFetch: false
+update:
+  method: never
