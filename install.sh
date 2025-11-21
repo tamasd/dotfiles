@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 D="$(realpath $(dirname $0))"
 
@@ -42,11 +42,9 @@ chmod -R 700 $HOME/.gnupg $HOME/.ssh
 gpg --import < $HOME/Sync/pubkey.asc
 
 mkdir -p $HOME/.config
-ln -s $D/nvim $HOME/.config/nvim
-ln -s $D/helix $HOME/.config/helix
-ln -s $D/ghostty $HOME/.config/ghostty
-
-ln -s $D/dlv $HOME/.config/dlv
+for i in nvim helix fish ghostty fish hypr mako walker waybar dlv ; do
+	ln -s $D/$i $HOME/.config/$i
+done
 
 mkdir -p $HOME/.config/lazygit
 ln -s $D/lazygit/config.yml $HOME/.config/lazygit/

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ $(grep -E '^ID=' /etc/os-release | cut -d'=' -f2) == "arch" ]; then
+	exit 0
+fi
+
 set -e
 
 VERSION="$1"

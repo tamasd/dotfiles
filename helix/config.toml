@@ -76,6 +76,7 @@ r = ":reset-diff-change"
 "T" = "@^itry <esc>"
 "_" = "@^i_=<esc>"
 C-d = "@ D%severity ERROR "
+#C-s = "@ s %kind function<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>"
 
 [keys.select]
 G = "goto_file_end"

@@ -3,7 +3,7 @@ export GOARCH="amd64"
 export GOAMD64="v3"
 export NPM_PACKAGES="${HOME}/.npm-packages"
 #export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.local/share/omarchy/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -19,7 +19,7 @@ ZSH_THEME="afowler"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(cabal docker-compose docker git rebar golang rust sudo systemd tmux ubuntu vagrant web-search gpg-agent)
+plugins=(docker-compose docker git rebar golang rust sudo ubuntu gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -117,8 +117,6 @@ RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
-
-export TERM=xterm-256color
 
 ulimit -S -n 4096
 
