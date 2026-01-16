@@ -7,6 +7,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/g
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export HOMEBREW_NO_ENV_HINTS=1
 
 ZSH=$HOME/.oh-my-zsh
 
@@ -88,7 +89,7 @@ alias cd..='cd ..'
 
 ## EXTRA COMPLETIONS ##
 mkdir -p $HOME/.zsh/completions
-fpath=($HOME/.zsh/completions $fpath)
+fpath=($HOME/.zsh/completions $fpath /home/linuxbrew/.linuxbrew/share/zsh/site-functions)
 if [ ! -e $HOME/.zsh/completions/_just ]; then
 	if type "just" > /dev/null; then
 		just --completions zsh > $HOME/.zsh/completions/_just
