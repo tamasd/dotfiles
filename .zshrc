@@ -3,7 +3,7 @@ export GOARCH="amd64"
 export GOAMD64="v3"
 export NPM_PACKAGES="${HOME}/.npm-packages"
 #export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.local/share/omarchy/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$NPM_PACKAGES/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.cargo/bin:$NPM_PACKAGES/bin:$PATH:$HOME/Tools/ols"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
@@ -120,5 +120,11 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 ulimit -S -n 4096
+
+fix_tmux_env() {
+    eval $(tmux show-env -s DISPLAY)
+    eval $(tmux show-env -s WAYLAND_DISPLAY)
+    eval $(tmux show-env -s XDG_RUNTIME_DIR)
+}
 
 eval `dircolors $HOME/.dir_colors`

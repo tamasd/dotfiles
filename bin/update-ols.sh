@@ -12,7 +12,6 @@ if test -e "$HOME/Tools/ols"; then
       git checkout "$LATEST_TAG"
       ./build.sh
       ./odinfmt.sh
-      mv ols odinfmt "$HOME/Tools/bin/"
     fi
   )
 fi
