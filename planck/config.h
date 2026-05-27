@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef AUDIO_INIT_DELAY
+#undef AUDIO_INIT_DELAY
+#endif
+
 #define STARTUP_SONG SONG(PLANCK_SOUND)
 #define AUDIO_INIT_DELAY 1000
 #define TEMPO_DEFAULT 60

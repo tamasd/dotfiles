@@ -63,6 +63,9 @@ enum planck_keycodes {
 
   // Rust stuff
   SKC_UNIT,
+
+  // Odin stuff
+  SKC_DOUBLE_COLON,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -109,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ CTL │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │ CTL │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │SHIFT│  -  │  =  │  `  │  \  │  [  │  ]  │     │  ,  │  .  │  /  │SHIFT│
+   *                │SHIFT│CMPSE│     │  `  │  \  │  [  │  ]  │     │  ,  │  .  │  /  │SHIFT│
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
    *                │  {  │     │ ALT │ WIN │     │ Backspace │     │ WIN │ ALT │     │  }  │
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
@@ -117,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LOWER_LAYER] = {
     {KC_EQL,     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,     KC_F6,     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_MINS   },
     {KC_LCTL,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,      KC_6,      KC_7,    KC_8,    KC_9,    KC_0,    KC_RCTL   },
-    {KC_LSFT,    KC_MINS, KC_EQL,  KC_GRV,  KC_BSLS, KC_LBRC,   KC_RBRC,   ___x___, KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT   },
+    {KC_LSFT,    KC_NUBS, _______, KC_GRV,  KC_BSLS, KC_LBRC,   KC_RBRC,   ___x___, KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT   },
     {S(KC_LBRC), _______, KC_LALT, KC_LGUI, GOBACK_, KC_BSPC,   KC_BSPC,   _______, KC_RGUI, KC_RALT, ___x___, S(KC_RBRC)}
   },
 
@@ -127,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ ESC │  !  │  @  │  #  │  $  │  %  │  ^  │  &  │  *  │  '  │  "  │ RET │ \
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤  |-- Mostly shifted version
-   *                │  (  │  _  │  +  │  ~  │  |  │  {  │  }  │     │  ,  │  .  │  /  │  )  │ /    of lower layer
+   *                │  (  │     │     │  ~  │  |  │  {  │  }  │     │  ,  │  .  │  /  │  )  │ /    of lower layer
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
    *                │  {  │     │     │     │     │  Delete   │     │     │     │     │  }  │
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
@@ -135,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [RAISE_LAYER] = {
     {KC_PLUS,    KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,     KC_F16,     KC_F17,  KC_F18,  KC_F19,  KC_F20,     KC_UNDS   },
     {KC_ESC,     S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),    S(KC_6),    S(KC_7), S(KC_8), KC_QUOT, S(KC_QUOT), KC_ENT    },
-    {KC_LPRN,    KC_UNDS, KC_PLUS, KC_TILD, KC_PIPE, S(KC_LBRC), S(KC_RBRC), ___x___, KC_COMM, KC_DOT,  KC_SLSH,    KC_RPRN   },
+    {KC_LPRN,    _______, _______, KC_TILD, KC_PIPE, S(KC_LBRC), S(KC_RBRC), ___x___, KC_COMM, KC_DOT,  KC_SLSH,    KC_RPRN   },
     {S(KC_LBRC), _______, _______, _______, _______, KC_DEL,     KC_DEL,     GOBACK_, _______, _______, ___x___,    S(KC_RBRC)}
   },
 
@@ -183,16 +186,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *                │ =>  │     │     │     │ :=  │Range│ "", │ !=  │ ()  │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │     │     │     │errne│ ife │     │     │     │     │     │
+   *                │     │     │     │     │ ::  │errne│ ife │     │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
    *                │     │     │     │     │     │   Space   │     │     │     │     │     │
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [SHORTCUT_LAYER] = {
-    {SKC_ARROW,        ___x___, ___x___, ___x___, ___x___,    ___x___,   ___x___,          ___x___, ___x___,  ___x___,  ___x___,  GOBACK_},
-    {SKC_DOUBLE_ARROW, ___x___, ___x___, ___x___, SKC_ASSIGN, SKC_RANGE, SKC_STRING_PARAM, SKC_NE,  SKC_UNIT, ___x___,  ___x___, ___x___},
-    {___x___,          ___x___, ___x___, ___x___, ___x___,    SKC_ERRNE, SKC_IFE,          ___x___, ___x___,  ___x___,  ___x___, ___x___},
-    {___x___,          ___x___, ___x___, ___x___, ___x___,    KC_SPC,    KC_SPC,           ___x___, ___x___,  ___x___,  ___x___, _______}
+    {SKC_ARROW,        ___x___, ___x___, ___x___, ___x___,          ___x___,   ___x___,          ___x___, ___x___,  ___x___,  ___x___,  GOBACK_},
+    {SKC_DOUBLE_ARROW, ___x___, ___x___, ___x___, SKC_ASSIGN,       SKC_RANGE, SKC_STRING_PARAM, SKC_NE,  SKC_UNIT, ___x___,  ___x___, ___x___},
+    {___x___,          ___x___, ___x___, ___x___, SKC_DOUBLE_COLON, SKC_ERRNE, SKC_IFE,          ___x___, ___x___,  ___x___,  ___x___, ___x___},
+    {___x___,          ___x___, ___x___, ___x___, ___x___,          KC_SPC,    KC_SPC,           ___x___, ___x___,  ___x___,  ___x___, _______}
   },
 
   /* Extra (EXTRA) layer
@@ -208,10 +211,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
    */
   [EXTRA_LAYER] = {
-    {KC_F4,   KC_BTN2, KC_MS_U, KC_BTN1, KC_WH_U, ___x___, ___x___, KC_NUM,  KC_P7, KC_P8,   KC_P9,   KC_PMNS},
-    {KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ___x___, ___x___, KC_PEQL, KC_P4, KC_P5,   KC_P6,   KC_PPLS},
-    {KC_LSFT, KC_WH_L, KC_BTN3, KC_WH_R, KC_BTN4, ___x___, ___x___, KC_PSLS, KC_P1, KC_P2,   KC_P3,   KC_PENT},
-    {GOBACK_, ___x___, KC_LALT, KC_LGUI, KC_BTN5, ___x___, ___x___, KC_PAST, KC_P0, KC_PCMM, KC_PDOT, KC_PENT}
+    {KC_F4,   MS_BTN2, MS_UP,   MS_BTN1, MS_WHLU, ___x___, ___x___, KC_NUM,  KC_P7, KC_P8,   KC_P9,   KC_PMNS},
+    {KC_LCTL, MS_LEFT, MS_DOWN, MS_RGHT, MS_WHLD, ___x___, ___x___, KC_PEQL, KC_P4, KC_P5,   KC_P6,   KC_PPLS},
+    {KC_LSFT, MS_WHLL, MS_BTN3, MS_WHLR, MS_BTN4, ___x___, ___x___, KC_PSLS, KC_P1, KC_P2,   KC_P3,   KC_PENT},
+    {GOBACK_, ___x___, KC_LALT, KC_LGUI, MS_BTN5, ___x___, ___x___, KC_PAST, KC_P0, KC_PCMM, KC_PDOT, KC_PENT}
   },
 
   /* Layer (LAYER) layer
@@ -367,6 +370,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     CMACRO(SKC_ERRNE,        " err != nil {")
     CMACRO(SKC_IFE,          "if err := ")
     CMACRO(SKC_UNIT,         "()")
+	CMACRO(SKC_DOUBLE_COLON, " :: ")
   }
 
   return true;

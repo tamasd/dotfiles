@@ -112,7 +112,15 @@ if [ $UID -eq 0 ]; then CARETCOLOR="red"; else CARETCOLOR="blue"; fi
 
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='%F{61}%n%{$reset_color%}@%{${fg[yellow]}%}%m %{${fg_bold[green]}%}:: %{$reset_color%}%{${fg[blue]}%}%3~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
+function distrobox_prompt_info() {
+	if [[ -n "$CONTAINER_ID" ]]; then
+		echo "$CONTAINER_ID "
+	fi
+}
+
+setopt PROMPT_SUBST
+
+PROMPT='%F{61}%n%{$reset_color%}@%{${fg[yellow]}%}%m %{${fg_bold[red]}%}$(distrobox_prompt_info)%{${fg_bold[green]}%}:: %{$reset_color%}%{${fg[blue]}%}%3~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 
 RPS1="${return_code}"
 
