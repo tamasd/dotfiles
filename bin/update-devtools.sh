@@ -16,6 +16,7 @@ $HOME/dotfiles/bin/update-erlang.sh
 $HOME/dotfiles/bin/update-rebar3.sh
 $HOME/dotfiles/bin/update-erlang-ls.sh
 $HOME/dotfiles/bin/update-elp.sh
+$HOME/dotfiles/bin/update-fossil.sh
 
 go install github.com/abice/go-enum@latest
 go install github.com/bcicen/ctop@master
