@@ -6,7 +6,7 @@ VERSION="$1"
 
 if [ -z "$1" ]; then
 	INSTALLED_VERSION=$(cat $HOME/Tools/erlang/OTP_VERSION || echo)
-	LATEST_VERSION=$(curl -s https://api.github.com/repos/erlang/otp/releases/latest | jq -r '.tag_name' | grep -oP '[\d\.]+')
+	LATEST_VERSION=$(curl -s https://api.github.com/repos/erlang/otp/releases | jq -r '.[] | select(.prerelease == false) | .tag_name' | grep -oP '[\d\.]+' | sort -V | tail -n 1)
 
 	if [ "$INSTALLED_VERSION" != "$LATEST_VERSION" ]; then
 		VERSION="$LATEST_VERSION"

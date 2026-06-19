@@ -1,7 +1,7 @@
 export GOOS="linux"
 export GOARCH="amd64"
 export GOAMD64="v3"
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.cargo/bin:$NPM_PACKAGES/bin:$PATH:$HOME/Tools/ols"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Tools/bin:$HOME/Tools/odin:$HOME/go/bin:$HOME/Tools/go/bin:$HOME/Tools/zig:$HOME/.cargo/bin:$PATH:$HOME/Tools/ols"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"

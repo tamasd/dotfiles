@@ -15,6 +15,7 @@ tar \
 	--exclude=zig-out \
 	--exclude=perf.data \
 	--exclude=perf.data.old \
+	--exclude=qmk \
 	-cf - Projects | \
 	gzip -9 | \
 	gpg --encrypt -r AECD4A22A8C7F19583C0B03ECCAD8960035C19E0 > /tmp/$FILENAME
