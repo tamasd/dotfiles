@@ -1,13 +1,16 @@
 font-family = SauceCodePro Nerd Font Mono
-font-size = 10
-theme = Solarized Dark Patched
-fullscreen = false
+font-size = 12
+theme = solarized-dark
+fullscreen = true
 window-decoration = false
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 window-show-tab-bar = never
-#gtk-titlebar = false
+window-padding-x = 0
+window-padding-y = 0
 
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
+
+keybind = f12=toggle_tab_overview
