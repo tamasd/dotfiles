@@ -10,6 +10,16 @@ cursor-text = #002b36
 selection-background = #073642
 selection-foreground = #93a1a1
 
+# Palette colors
+# - black
+# - red
+# - green
+# - yellow
+# - blue
+# - purple
+# - cyan
+# - white
+
 # ANSI Palette (0-7 Normal)
 palette = 0=#073642
 palette = 1=#dc322f
@@ -21,7 +31,7 @@ palette = 6=#2aa198
 palette = 7=#eee8d5
 
 # ANSI Palette (8-15 Bright)
-palette = 8=#002b36
+palette = 8=#586e75
 palette = 9=#cb4b16
 palette = 10=#586e75
 palette = 11=#657b83
