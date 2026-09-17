@@ -1,5 +1,3 @@
--- Made by GLM-5.3
-
 -- lua/user/make_task_picker.lua
 local M = {}
 
