@@ -57,7 +57,7 @@ export GEM_HOME="$HOME/.gem"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR='hx'
+export EDITOR='nvim'
 
 ## ALIASES ##
 

@@ -36,6 +36,9 @@ rm "$FILENAME"
 
 mv odin-linux-amd64* odin
 
-make -C "$HOME/Tools/odin/vendor/stb/src"
+(
+	cd "$HOME/Tools/odin/vendor/stb/src"
+	./build-stb.sh
+)
 
 odin version
