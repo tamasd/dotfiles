@@ -71,6 +71,7 @@ do
 		"https://github.com/mfussenegger/nvim-dap",
 		"https://github.com/smoka7/hop.nvim",
 		"https://github.com/nvim-mini/mini.nvim",
+		"https://github.com/lewis6991/gitsigns.nvim",
 		{ src = "https://github.com/saghen/blink.cmp", version = "v1" },
 	})
 end
@@ -233,7 +234,7 @@ do
 				},
 				usePlaceholders = false,
 				completeUnimported = true,
-				staticcheck = true,
+				staticcheck = false,
 				matcher = "Fuzzy",
 				diagnosticsDelay = "500ms",
 				symbolMatcher = "fuzzy",
@@ -271,18 +272,9 @@ do
 			command = {
 				"golangci-lint",
 				"run",
-				-- disable all output formats that might be enabled by the users .golangci.yml
-				"--output.text.path=",
-				"--output.tab.path=",
-				"--output.html.path=",
-				"--output.checkstyle.path=",
-				"--output.junit-xml.path=",
-				"--output.teamcity.path=",
-				"--output.sarif.path=",
-				-- disable stats output
 				"--show-stats=false",
-				-- enable JSON output to be used by the language server
 				"--output.json.path=stdout",
+				"--issues-exit-code=1",
 			},
 		},
 	}
@@ -422,8 +414,49 @@ do
 	end
 end
 
+-- SECTION: VERSION CONTROL
+do
+	require("gitsigns").setup()
+end
+
 -- SECTION: STATUSLINE
 do
+	local icons = {
+		["asm"] = "",
+		["awk"] = "",
+		["bash"] = "󱆃",
+		["c"] = "",
+		["cmake"] = "",
+		["cpp"] = "",
+		["diff"] = "",
+		["dockerfile"] = "",
+		["erlang"] = "",
+		["gitconfig"] = "",
+		["gitignore"] = "",
+		["glsl"] = "",
+		["go"] = "",
+		["gomod"] = "",
+		["html"] = "",
+		["javascript"] = "",
+		["json"] = "",
+		["json5"] = "",
+		["jsonc"] = "",
+		["lua"] = "",
+		["make"] = "",
+		["markdown"] = "",
+		["odin"] = "󰟢",
+		["php"] = "",
+		["r"] = "",
+		["sh"] = "󱆃",
+		["sql"] = "",
+		["tex"] = "",
+		["typescript"] = "",
+		["yaml"] = "",
+		["zig"] = "",
+
+		["default"] = "",
+	}
+
 	local function diag_counts()
 		local e = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
 		local w = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -441,6 +474,17 @@ do
 		return table.concat(parts, " ")
 	end
 
+	local function vcs()
+		local active = vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin)
+		local nc = active and "" or "NC"
+		local head = vim.b.gitsigns_head
+		if head then
+			return "%#StatusVCSHead" .. nc .. "#@ " .. head .. "%*"
+		end
+
+		return ""
+	end
+
 	_G._statusline = function()
 		local file = vim.fn.expand("%:.")
 		if file == "" then file = "[No Name]" end
@@ -452,7 +496,18 @@ do
 		local enc = vim.bo.fileencoding ~= "" and vim.bo.fileencoding or "utf-8"
 		local eol = vim.bo.fileformat
 		local d = diag_counts()
-		return string.format(" %s %%= %s  %s  %s/%s  %s  %s ", file, d, ft, pos, total, enc, eol)
+		return string.format(
+			" %s %s %s %%= %s  %s  %s/%s  %s  %s ",
+			icons[ft] or icons["default"],
+			file,
+			vcs(),
+			d,
+			ft,
+			pos,
+			total,
+			enc,
+			eol
+		)
 	end
 
 	vim.opt.statusline = "%{%v:lua._statusline()%}"
@@ -607,26 +662,26 @@ end
 -- SECTION: COLOR SCHEME
 do
 	local c = {
-		base03	 = "#002b36",
-		base025	= "#03303b",
-		base02	 = "#073642",
+		base03   = "#002b36",
+		base025  = "#03303b",
+		base02   = "#073642",
 		base0175 = "#16404b",
-		base015	= "#2c4f59",
-		base01	 = "#586e75",
-		base00	 = "#657b83",
-		base0		= "#839496",
-		base1		= "#93a1a1",
-		base2		= "#eee8d5",
-		base3		= "#fdf6e3",
+		base015  = "#2c4f59",
+		base01   = "#586e75",
+		base00   = "#657b83",
+		base0    = "#839496",
+		base1    = "#93a1a1",
+		base2    = "#eee8d5",
+		base3    = "#fdf6e3",
 
-		yellow	 = "#b58900",
-		orange	 = "#cb4b16",
-		red			= "#dc322f",
-		magenta	= "#d33682",
-		violet	 = "#6c71c4",
-		blue		 = "#268bd2",
-		cyan		 = "#2aa198",
-		green		= "#859900",
+		yellow  = "#b58900",
+		orange  = "#cb4b16",
+		red	    = "#dc322f",
+		magenta = "#d33682",
+		violet  = "#6c71c4",
+		blue    = "#268bd2",
+		cyan    = "#2aa198",
+		green   = "#859900",
 	}
 
 	local function set_hl(group, opts)
@@ -794,6 +849,10 @@ do
 	set_fg("StatusDiagnosticWarning", "yellow", { bold = true })
 	set_fg("StatusDiagnosticInfo", "green", { bold = true })
 	set_fg("StatusDiagnosticHint", "blue", { bold = true })
+	set_fg("StatusVCSHead", "base00")
+	set_fg("GitSignsAdd", "green")
+	set_fg("GitSignsChange", "yellow")
+	set_fg("GitSignsDelete", "red")
 
 	vim.g.terminal_color_0	= c.base03
 	vim.g.terminal_color_1	= c.red
