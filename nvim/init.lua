@@ -633,14 +633,29 @@ do
 			vim.opt.relativenumber = false
 		end
 	})
+
 	vim.api.nvim_create_autocmd("InsertLeave", {
 		callback = function()
 			vim.opt.relativenumber = true
 		end
 	})
+
 	vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
 		pattern = "*",
 		command = "wincmd =",
+	})
+
+	-- fix buffer names opened by LSP
+	vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+		callback = function(args)
+			local name = vim.api.nvim_buf_get_name(args.buf)
+			if name ~= "" then
+				local relative = vim.fn.fnamemodify(name, ":.")
+				if relative ~= name then
+					vim.api.nvim_buf_set_name(args.buf, relative)
+				end
+			end
+		end,
 	})
 end
 
