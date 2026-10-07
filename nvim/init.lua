@@ -898,3 +898,78 @@ do
 		hop.hint_words()
 	end)
 end
+
+-- SECTION: COMMANDS
+do
+	-- :Rename new-name.txt      rename relative to the current file's directory
+	-- :Rename! new-name.txt     overwrite the target if it exists
+	-- :Rename sub/dir/new.txt   also relative to the file's dir
+	-- :Rename /abs/path.txt     absolute paths and ~/... work too
+	vim.api.nvim_create_user_command('Rename', function(opts)
+		-- tolerate surrounding quotes, e.g. :Rename "my file.txt"
+		local new_name = opts.args:gsub('^"(.*)"$', '%1')
+
+		local old = vim.api.nvim_buf_get_name(0)
+		if new_name == '' or old == '' or vim.bo.buftype ~= '' then
+			vim.notify('Rename: needs a named, normal buffer and a new file name', vim.log.levels.ERROR)
+			return
+		end
+
+		-- Resolve the target relative to the file's directory, NOT cwd
+		local dir = vim.fn.fnamemodify(old, ':h')
+		if new_name:find('^[~$]') then
+			new_name = vim.fn.expand(new_name)                -- support ~/x and $VAR/x
+		end
+		if not (new_name:sub(1, 1) == '/' or new_name:match('^%a:[/\\]')) then
+			new_name = dir .. '/' .. new_name                 -- <-- the important line
+		end
+		local target = vim.fn.fnamemodify(new_name, ':p')
+
+		if target == old then
+			vim.notify('Rename: new name is the same', vim.log.levels.WARN)
+			return
+		end
+		if vim.uv.fs_stat(target) and not opts.bang then
+			vim.notify('Rename: target exists (use :Rename! to overwrite):\n' .. target, vim.log.levels.ERROR)
+			return
+		end
+		if vim.fn.bufexists(target) == 1 then
+			vim.notify('Rename: a buffer already has this file open: ' .. target, vim.log.levels.ERROR)
+			return
+		end
+
+		-- Persist pending changes first, so the rename never loses work
+		if vim.bo.modified then
+			local ok, err = pcall(vim.cmd, 'update')
+			if not ok then
+				vim.notify('Rename: could not save buffer: ' .. err, vim.log.levels.ERROR)
+				return
+			end
+		end
+
+		-- Rename on disk (preserves permissions/metadata, unlike :saveas)
+		local ok, err = vim.uv.fs_rename(old, target)
+		if not ok then
+			vim.notify('Rename failed: ' .. (err or 'unknown error'), vim.log.levels.ERROR)
+			return
+		end
+
+		-- Re-point the SAME buffer at the new path
+		vim.api.nvim_buf_set_name(0, target)
+		vim.cmd('silent! edit!')  -- re-read from new path; re-detects filetype/modelines
+
+		print(('Renamed %s -> %s'):format(
+			vim.fn.fnamemodify(old, ':t'), vim.fn.fnamemodify(target, ':t')))
+		end, {
+		nargs = 1,          -- the whole tail of the line is ONE argument, so spaces need no quoting
+		bang = true,        -- :Rename! overwrites an existing target
+		desc = 'Rename the current file, relative to its own directory',
+		complete = function(arglead)
+			if arglead:match('^[/~]') then
+				return vim.fn.getcompletion(arglead, 'file')
+			end
+			local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':h')
+			return vim.fn.getcompletion(dir .. '/' .. arglead, 'file')  -- complete in the file's dir
+		end,
+	})
+end
