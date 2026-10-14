@@ -340,16 +340,247 @@ do
 		builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
 	end
 
+	-- Custom sorter: filter by path, always include if it matches
+	local sorters = require("telescope.sorters")
+	local fzy = require("telescope.algos.fzy")
+
+	-- Boundary-anchored fuzzy path matching: the first character of each term
+	-- must sit at a word boundary (path start, after '/', '.', '_', '-', or a
+	-- camelCase hump); the remaining characters are matched as a subsequence.
+	local function path_term_match(term, path)
+		term = term:lower()
+		local lower_path = path:lower()
+		local first = term:sub(1, 1)
+		local first_is_sep = first:match("[/\\._%-]") ~= nil
+
+		local from = 1
+		while true do
+			local s = lower_path:find(first, from, true)
+			if not s then
+				return false
+			end
+			local prev = path:sub(s - 1, s - 1)
+			local curr = path:sub(s, s)
+			local at_boundary = s == 1
+			or first_is_sep
+			or prev:match("[/\\._%-]") ~= nil
+			or (prev:match("%l") ~= nil and curr:match("%u") ~= nil)
+
+			if at_boundary then
+				local j = s + 1
+				local ok = true
+				for i = 2, #term do
+					j = lower_path:find(term:sub(i, i), j, true)
+					if not j then
+						ok = false
+						break
+					end
+					j = j + 1
+				end
+				if ok then
+					return true
+				end
+			end
+			from = s + 1
+		end
+	end
+
+	-- Every whitespace-separated term in the filter must match the path.
+	local function path_matches(filter, path)
+		if not filter or filter == "" then
+			return true
+		end
+		for term in filter:gmatch("%S+") do
+			if not path_term_match(term, path) then
+				return false
+			end
+		end
+		return true
+	end
+
+	-- Live grep with path filtering: "grep pattern  path filter"
+	local function live_grep_path(opts)
+		opts = opts or {}
+
+		-- Shared state between the prompt filter and the sorter
+		local path_filter = nil
+
+		-- Split "grep_pattern  path_filter" on the first double space
+		local function parse_prompt(prompt)
+			if not prompt or prompt == "" then
+				return prompt, nil
+			end
+			local sep = prompt:find("  ", 1, true)
+			if not sep then
+				return prompt, nil
+			end
+			local grep_part = prompt:sub(1, sep - 1)
+			local path_part = prompt:sub(sep + 2):gsub("^%s+", "")
+			return grep_part, path_part
+		end
+
+		opts.sorter = sorters.Sorter:new({
+			scoring_function = function(_, _, _, entry)
+				if path_filter and path_filter ~= "" then
+					if not path_matches(path_filter, entry.filename or "") then
+						return -1
+					end
+				end
+				return 1
+			end,
+			highlighter = function(_, prompt, display)
+				return fzy.positions(prompt, display)
+			end,
+		})
+
+		-- Intercept the prompt: extract path filter, send only grep part to rg
+		opts.on_input_filter_cb = function(prompt)
+			local grep_part, path_part = parse_prompt(prompt)
+			path_filter = path_part
+			return { prompt = grep_part }
+		end
+
+		builtin.live_grep(opts)
+	end
+
+	-- LSP document symbols with type filter: "symbol pattern  type filter"
+	local function lsp_document_symbols_typed(opts)
+		opts = opts or {}
+
+		-- Split "symbol_pattern  type_filter" on the first double space
+		local function parse_prompt(prompt)
+			if not prompt or prompt == "" then
+				return prompt, nil
+			end
+			local sep = prompt:find("  ", 1, true)
+			if not sep then
+				return prompt, nil
+			end
+			local symbol_part = prompt:sub(1, sep - 1)
+			local type_part = prompt:sub(sep + 2):gsub("^%s+", "")
+			return symbol_part, type_part
+		end
+
+		opts.sorter = sorters.Sorter:new({
+			scoring_function = function(_, prompt, _, entry)
+				local symbol_part, type_part = parse_prompt(prompt)
+
+				-- Filter by symbol type (after double space)
+				if type_part and type_part ~= "" then
+					if not fzy.has_match(type_part, entry.symbol_type or "") then
+						return -1
+					end
+				end
+
+				-- Score by symbol name (before double space)
+				if symbol_part and symbol_part ~= "" then
+					if not fzy.has_match(symbol_part, entry.symbol_name or "") then
+						return -1
+					end
+					return -fzy.score(symbol_part, entry.symbol_name or "")
+				end
+
+				return 0
+			end,
+			highlighter = function(_, prompt, display)
+				local symbol_part = parse_prompt(prompt)
+				if symbol_part and symbol_part ~= "" then
+					return fzy.positions(symbol_part, display)
+				end
+				return {}
+			end,
+		})
+
+		builtin.lsp_document_symbols(opts)
+	end
+
+	-- LSP dynamic workspace symbols with path and type filters
+	-- Format: "name  path  type" (double-space separated; empty path = 4 spaces)
+	local function lsp_dynamic_workspace_symbols_typed(opts)
+		opts = opts or {}
+
+		local path_filter = nil
+		local type_filter = nil
+
+		-- Split on double-space, keeping empty parts, then trim each
+		local function parse_prompt(prompt)
+			if not prompt or prompt == "" then
+				return prompt or "", nil, nil
+			end
+			local parts = {}
+			local start = 1
+			while true do
+				local sep_start, sep_end = prompt:find("  ", start, true)
+				if not sep_start then
+					table.insert(parts, prompt:sub(start))
+					break
+				end
+				table.insert(parts, prompt:sub(start, sep_start - 1))
+				start = sep_end + 1
+			end
+			for i, part in ipairs(parts) do
+				parts[i] = part:gsub("^%s+", ""):gsub("%s+$", "")
+			end
+			local name = parts[1] or ""
+			local path = parts[2]
+			local typ = parts[3]
+			return name, path, typ
+		end
+
+		opts.on_input_filter_cb = function(prompt)
+			local name, path, typ = parse_prompt(prompt)
+			path_filter = path
+			type_filter = typ
+			return { prompt = name }
+		end
+
+		opts.sorter = sorters.Sorter:new({
+			scoring_function = function(_, prompt, _, entry)
+				-- Filter by path (from closure, set by on_input_filter_cb)
+				if path_filter and path_filter ~= "" then
+					if not path_matches(path_filter, entry.filename or "") then
+						return -1
+					end
+				end
+
+				-- Filter by type (from closure)
+				if type_filter and type_filter ~= "" then
+					if not fzy.has_match(type_filter, entry.symbol_type or "") then
+						return -1
+					end
+				end
+
+				-- Score by symbol name (prompt is name-only after on_input_filter_cb)
+				if prompt and prompt ~= "" then
+					if not fzy.has_match(prompt, entry.symbol_name or "") then
+						return -1
+					end
+					return -fzy.score(prompt, entry.symbol_name or "")
+				end
+
+				return 0
+			end,
+			highlighter = function(_, prompt, display)
+				if prompt and prompt ~= "" then
+					return fzy.positions(prompt, display)
+				end
+				return {}
+			end,
+		})
+
+		builtin.lsp_dynamic_workspace_symbols(opts)
+	end
+
 	vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Files" })
 	vim.keymap.set("n", "<leader>F", buffer_dir_files, { desc = "Files in buffer directory" })
 	vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Buffers" })
 	vim.keymap.set("n", "<leader>j", builtin.jumplist, { desc = "Jumplist" })
-	vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, { desc = "Document symbols" })
-	vim.keymap.set("n", "<leader>S", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
+	vim.keymap.set("n", "<leader>s", lsp_document_symbols_typed, { desc = "Document symbols" })
+	vim.keymap.set("n", "<leader>S", lsp_dynamic_workspace_symbols_typed, { desc = "Workspace symbols" })
 	vim.keymap.set("n", "<leader>d", function() builtin.diagnostics({ bufnr = 0 }) end, { desc = "Diagnostics" })
 	vim.keymap.set("n", "<leader>D", function() builtin.diagnostics({ bufnr = nil }) end, { desc = "Workspace diagnostics" })
 	vim.keymap.set("n", "<leader><C-d>", function() builtin.diagnostics({ bufnr = nil, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Workspace errors" })
-	vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live grep" })
+	vim.keymap.set("n", "<leader>/", live_grep_path, { desc = "Live grep" })
 	vim.keymap.set("n", "<leader>'", builtin.resume, { desc = "Open last" })
 
 	-- disable autocomplete in the telescope
@@ -648,13 +879,21 @@ do
 	-- fix buffer names opened by LSP
 	vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		callback = function(args)
-			local name = vim.api.nvim_buf_get_name(args.buf)
-			if name ~= "" then
-				local relative = vim.fn.fnamemodify(name, ":.")
-				if relative ~= name then
-					vim.api.nvim_buf_set_name(args.buf, relative)
-				end
-			end
+			local buf = args.buf
+			if vim.bo[buf].buftype ~= "" then return end
+
+			local full = vim.api.nvim_buf_get_name(buf)
+			if full == "" or full:match("^%w[%w+.-]*://") then return end -- unnamed or URI
+
+			local relative = vim.fn.fnamemodify(full, ":.")
+			-- outside the cwd, or already named relatively
+			if relative == full or vim.fn.bufname(buf) == relative then return end
+
+			vim.api.nvim_buf_call(buf, function()
+				-- keepalt: don't touch the alternate file
+				-- noautocmd: the real path doesn't change, so nothing should see a "rename"
+				vim.cmd("keepalt noautocmd silent file " .. vim.fn.fnameescape(relative))
+			end)
 		end,
 	})
 end
