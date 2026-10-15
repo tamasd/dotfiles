@@ -48,6 +48,8 @@ do
 		"o:block-Cursor",
 	}
 
+	vim.opt.exrc = true
+
 	local osc52 = require("vim.ui.clipboard.osc52")
 	vim.g.clipboard = {
 		name = "OSC 52",
