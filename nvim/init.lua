@@ -320,7 +320,9 @@ do
 			end, "Hover")
 			map("n", "<C-s>", vim.lsp.buf.signature_help, "Signature help")
 		end,
-		})
+		}
+	)
+
 end
 
 -- SECTION: TELESCOPE
@@ -877,27 +879,6 @@ do
 		pattern = "*",
 		command = "wincmd =",
 	})
-
-	-- fix buffer names opened by LSP
-	vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-		callback = function(args)
-			local buf = args.buf
-			if vim.bo[buf].buftype ~= "" then return end
-
-			local full = vim.api.nvim_buf_get_name(buf)
-			if full == "" or full:match("^%w[%w+.-]*://") then return end -- unnamed or URI
-
-			local relative = vim.fn.fnamemodify(full, ":.")
-			-- outside the cwd, or already named relatively
-			if relative == full or vim.fn.bufname(buf) == relative then return end
-
-			vim.api.nvim_buf_call(buf, function()
-				-- keepalt: don't touch the alternate file
-				-- noautocmd: the real path doesn't change, so nothing should see a "rename"
-				vim.cmd("keepalt noautocmd silent file " .. vim.fn.fnameescape(relative))
-			end)
-		end,
-	})
 end
 
 -- SECTION: MINI
@@ -1213,4 +1194,50 @@ do
 			return vim.fn.getcompletion(dir .. '/' .. arglead, 'file')  -- complete in the file's dir
 		end,
 	})
+end
+
+-- Files opened through the LSP (gd, references, diagnostics, renames, ...)
+-- get project-relative buffer names instead of absolute paths.
+--
+-- The server always sends absolute file:// URIs, but every LSP file-open goes
+-- through vim.uri_to_fname() -> bufadd(). Hook the conversion so buffers are
+-- *created* with their relative name; nothing is renamed afterwards.
+--
+-- Two patch points are needed:
+--   require("vim.uri").uri_to_fname   called internally by vim.uri_to_bufnr()
+--                                     (gd jumps via show_document, diagnostics)
+--   vim.uri_to_fname                  called by vim.lsp.util.locations_to_items()
+--                                     (quickfix lists, Telescope LSP pickers)
+--
+-- Safe: nvim_buf_get_name() always reports the absolute path of a file buffer
+-- and the LSP client builds URIs from that, so the server sees identical
+-- URIs as before. Verified on nvim 0.11 and 0.12.
+--
+-- Assumes cwd stays at the project root (no :cd / :lcd).
+do
+    local ok, uri = pcall(require, "vim.uri")
+    if not ok or type(uri.uri_to_fname) ~= "function" then
+        vim.notify_once("lsp-relative-paths: vim.uri module not found", vim.log.levels.WARN)
+    else
+        local uri_to_fname = uri.uri_to_fname
+
+        local function relativize(fname)
+            local rel = vim.fn.fnamemodify(fname, ":.")
+            if rel == fname or rel == "" or rel:sub(1, 3) == "../" then
+                return fname -- not inside the project: keep absolute
+            end
+            return rel
+        end
+
+        local function rel_uri_to_fname(u)
+            local fname = uri_to_fname(u)
+            if type(u) == "string" and u:sub(1, 7) == "file://" then
+                return relativize(fname)
+            end
+            return fname
+        end
+
+        uri.uri_to_fname = rel_uri_to_fname -- used by vim.uri_to_bufnr()
+        vim.uri_to_fname = rel_uri_to_fname -- used by quickfix/Telescope items
+    end
 end
