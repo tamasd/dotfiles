@@ -16,7 +16,6 @@ do
 	vim.o.smartcase = true
 	vim.o.signcolumn = "yes"
 	vim.o.updatetime = 250
-	vim.o.timeoutlen = 300
 	vim.o.splitright = true
 	vim.o.splitbelow = true
 	vim.o.list = true
@@ -627,6 +626,7 @@ do
 	end, { desc = "Toggle quickfix" })
 	vim.keymap.set("n", "<C-c>", "gcc", { remap = true, desc = "Toggle comment on current line" })
 	vim.keymap.set("v", "<C-c>", "gc", { remap = true, desc = "Toggle comment on selection" })
+	vim.keymap.set("n", "<leader>n", "vi(sanjA,<Esc>:s/,/,\\r/g<CR>dd", { remap = true, desc = "Split comma-separated list" })
 
 	do
 		local select = require("vim.treesitter._select")
@@ -651,7 +651,73 @@ end
 
 -- SECTION: VERSION CONTROL
 do
-	require("gitsigns").setup()
+	require("gitsigns").setup({
+		on_attach = function(bufnr)
+			local gitsigns = require("gitsigns")
+
+			local function map(mode, l, r, opts)
+				opts = opts or {}
+				opts.buffer = bufnr
+				vim.keymap.set(mode, l, r, opts)
+			end
+
+			-- Navigation
+			map("n", "]c", function()
+				if vim.wo.diff then
+					vim.cmd.normal({"]c", bang = true})
+				else
+					gitsigns.nav_hunk("next")
+				end
+			end)
+
+			map("n", "[c", function()
+				if vim.wo.diff then
+					vim.cmd.normal({"[c", bang = true})
+				else
+					gitsigns.nav_hunk("prev")
+				end
+			end)
+
+			-- Actions
+			map("n", "<leader>hs", gitsigns.stage_hunk)
+			map("n", "<leader>hr", gitsigns.reset_hunk)
+
+			map("v", "<leader>hs", function()
+				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end)
+
+			map("v", "<leader>hr", function()
+				gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end)
+
+			map("n", "<leader>hS", gitsigns.stage_buffer)
+			map("n", "<leader>hR", gitsigns.reset_buffer)
+			map("n", "<leader>hp", gitsigns.preview_hunk)
+			map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+
+			map("n", "<leader>hb", function()
+				gitsigns.blame_line({ full = true })
+			end)
+
+			map("n", "<leader>hd", gitsigns.diffthis)
+
+			map("n", "<leader>hD", function()
+				gitsigns.diffthis("~")
+			end)
+
+			map("n", "<leader>hQ", function() gitsigns.setqflist("all") end)
+			map("n", "<leader>hq", gitsigns.setqflist)
+
+			-- Toggles
+			map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+			map("n", "<leader>tw", gitsigns.toggle_word_diff)
+
+			map("n", "<leader>B", gitsigns.blame)
+
+			-- Text object
+			map({"o", "x"}, "ih", gitsigns.select_hunk)
+		end
+	})
 end
 
 -- SECTION: STATUSLINE
@@ -886,7 +952,12 @@ do
 	require("mini.ai").setup()
 	require("mini.align").setup()
 	require("mini.pairs").setup()
-	require("mini.surround").setup()
+	require("mini.surround").setup({
+		custom_surroundings = {
+			n = { output = { left = '\n', right = '\n' } },
+		},
+		respect_selection_type = true,
+	})
 end
 
 -- SECTION: CUSTOM PLUGINS
