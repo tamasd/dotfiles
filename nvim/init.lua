@@ -73,7 +73,7 @@ do
 		"https://github.com/smoka7/hop.nvim",
 		"https://github.com/nvim-mini/mini.nvim",
 		"https://github.com/lewis6991/gitsigns.nvim",
-		{ src = "https://github.com/saghen/blink.cmp", version = "v1" },
+		{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range('1.0') },
 	})
 end
 
