@@ -38,7 +38,7 @@ mv odin-linux-amd64* odin
 
 (
 	cd "$HOME/Tools/odin/vendor/stb/src"
-	./build-stb.sh
+	./build_stb.sh
 )
 
 odin version

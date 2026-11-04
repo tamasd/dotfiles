@@ -627,6 +627,7 @@ do
 	vim.keymap.set("n", "<C-c>", "gcc", { remap = true, desc = "Toggle comment on current line" })
 	vim.keymap.set("v", "<C-c>", "gc", { remap = true, desc = "Toggle comment on selection" })
 	vim.keymap.set("n", "<leader>n", "vi(sanjA,<Esc>:s/,/,\\r/g<CR>dd", { remap = true, desc = "Split comma-separated list" })
+	vim.keymap.set("n", "<F5>", require("runner").run, { desc = "Run current file" })
 
 	do
 		local select = require("vim.treesitter._select")
@@ -949,9 +950,16 @@ end
 
 -- SECTION: MINI
 do
+	local gen_hook = require("mini.splitjoin").gen_hook
+
 	require("mini.ai").setup()
 	require("mini.align").setup()
+	require("mini.bufremove").setup()
 	require("mini.pairs").setup()
+	require("mini.splitjoin").setup({
+		split = { hooks_post = { gen_hook.add_trailing_separator() } },
+		join  = { hooks_post = { gen_hook.del_trailing_separator() } },
+	})
 	require("mini.surround").setup({
 		custom_surroundings = {
 			n = { output = { left = '\n', right = '\n' } },
@@ -1265,6 +1273,20 @@ do
 			return vim.fn.getcompletion(dir .. '/' .. arglead, 'file')  -- complete in the file's dir
 		end,
 	})
+
+	vim.api.nvim_create_user_command("Bc", function(opts)
+		local buf_id = 0
+		if opts.args ~= "" then
+			buf_id = tonumber(opts.args) or vim.fn.bufnr(opts.args)
+		end
+		require("mini.bufremove").delete(buf_id, opts.bang)
+	end, {
+		bang = true,       -- enables :Bc! for force
+		nargs = "?",       -- optional buffer number/name
+		complete = "buffer",
+		desc = "Delete buffer (mini.bufremove)",
+	})
+	vim.cmd.cnoreabbrev('<expr> bc getcmdtype() == ":" && getcmdline() == "bc" ? "Bc" : "bc"')
 end
 
 -- Files opened through the LSP (gd, references, diagnostics, renames, ...)
