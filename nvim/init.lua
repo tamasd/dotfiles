@@ -73,7 +73,7 @@ do
 		"https://github.com/smoka7/hop.nvim",
 		"https://github.com/nvim-mini/mini.nvim",
 		"https://github.com/lewis6991/gitsigns.nvim",
-		{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range('1.0') },
+		{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	})
 end
 
@@ -84,6 +84,7 @@ do
 	local ft = {
 		"bash",
 		"c",
+		"comment",
 		"css",
 		"csv",
 		"dockerfile",
@@ -1169,6 +1170,10 @@ do
 	set_fg("GitSignsAdd", "green")
 	set_fg("GitSignsChange", "yellow")
 	set_fg("GitSignsDelete", "red")
+	set_hl("@comment.error",   { default = true, link = "DiagnosticError" })
+	set_hl("@comment.warning", { default = true, link = "DiagnosticWarn" })
+	set_hl("@comment.todo",    { default = true, link = "DiagnosticWarn" })
+	set_hl("@comment.note",    { default = true, link = "Todo" })
 
 	vim.g.terminal_color_0	= c.base03
 	vim.g.terminal_color_1	= c.red
